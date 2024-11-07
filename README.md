@@ -1,2 +1,2 @@
 # Trails-of-Valhalla
-Repository used for Mobile Games Programming final project
+Repository used for Game Design For Mobile Devices final project
