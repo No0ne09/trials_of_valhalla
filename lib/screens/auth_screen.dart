@@ -72,9 +72,12 @@ class _AuthScreenState extends State<AuthScreen> {
         forceMaterialTransparency: true,
         title: SizedBox(
           height: kToolbarHeight,
-          child: Image.asset(
-            'assets/images/logo.png',
-            fit: BoxFit.contain,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(
+              'assets/images/logo.png',
+              fit: BoxFit.contain,
+            ),
           ),
         ),
       ),
