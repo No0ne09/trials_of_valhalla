@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:trials_of_valhalla/helpers/functions.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
 import 'package:trials_of_valhalla/helpers/validators.dart';
 import 'package:trials_of_valhalla/widgets/auth_button.dart';
@@ -29,6 +30,26 @@ class _AuthScreenState extends State<AuthScreen> {
 
       final email = _emailController.text.toLowerCase();
       final password = _passwordController.text;
+
+      try {
+        _isLogin
+            ? await _authInstance.signInWithEmailAndPassword(
+                email: email, password: password)
+            : await _authInstance.createUserWithEmailAndPassword(
+                email: email, password: password);
+      } on FirebaseAuthException catch (e) {
+        if (!mounted) return;
+        setState(() {
+          _isProcessing = false;
+        });
+        if (!mounted) return;
+        await handleFirebaseError(e.code, context);
+        return;
+      } catch (_) {
+        if (!mounted) return;
+        await showInfoPopup(context, unknownError);
+        return;
+      }
     }
   }
 
