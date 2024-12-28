@@ -62,7 +62,7 @@ class _PasswordResetPopupState extends State<PasswordResetPopup> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      insetPadding: const EdgeInsets.all(10),
+      insetPadding: const EdgeInsets.all(8),
       content: Form(
         key: _formKey,
         child: Column(
@@ -83,10 +83,13 @@ class _PasswordResetPopupState extends State<PasswordResetPopup> {
                   ),
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
-            const Text(
+            Text(
               emailInfo,
+              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                    fontFamily: defaultFontFamily,
+                  ),
             ),
             const SizedBox(
               height: 10,
