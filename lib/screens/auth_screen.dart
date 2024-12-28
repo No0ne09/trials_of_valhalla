@@ -22,7 +22,7 @@ class _AuthScreenState extends State<AuthScreen> {
   bool _isProcessing = false;
   final _authInstance = FirebaseAuth.instance;
 
-  Future<void> _validate() async {
+  Future<void> _authenticate() async {
     if (_formKey.currentState!.validate()) {
       setState(() {
         _isProcessing = true;
@@ -161,7 +161,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         : SizedBox(
                             width: double.infinity,
                             child: AuthButton(
-                              onPressed: _validate,
+                              onPressed: _authenticate,
                               text: _isLogin ? login : register,
                             ),
                           ),
