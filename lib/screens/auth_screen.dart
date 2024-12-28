@@ -90,13 +90,13 @@ class _AuthScreenState extends State<AuthScreen> {
                           const SizedBox(
                             height: 8,
                           ),
-                          /*if (_isLogin)
+                          if (_isLogin)
                             ExcludeFocus(
                               child: TextButton(
                                 onPressed: () async {
                                   await showDialog(
                                     context: context,
-                                    builder: (context) => const AuthResetPopup(),
+                                    builder: (context) => const AlertDialog(),
                                   );
                                 },
                                 child: const Text(
@@ -106,7 +106,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                   ),
                                 ),
                               ),
-                            ),*/
+                            ),
                         ],
                       ),
                     )),
