@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trials_of_valhalla/helpers/constants.dart';
 
 class InfoPopup extends StatelessWidget {
   const InfoPopup({
@@ -19,16 +20,27 @@ class InfoPopup extends StatelessWidget {
           },
           style: ElevatedButton.styleFrom(
               backgroundColor: Colors.red, foregroundColor: Colors.white),
-          child: const Text("Ok"),
+          child: Text(
+            "Ok",
+            style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                  fontFamily: defaultFontFamily,
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
         ),
       ],
       title: Text(
         title,
-        style: const TextStyle(fontWeight: FontWeight.bold),
+        style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+              fontFamily: defaultFontFamily,
+              fontWeight: FontWeight.bold,
+            ),
       ),
       content: Text(
         desc,
-        style: const TextStyle(fontSize: 16),
+        style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+              fontFamily: defaultFontFamily,
+            ),
       ),
     );
   }

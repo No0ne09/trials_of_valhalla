@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:trials_of_valhalla/helpers/constants.dart';
 
 import 'package:trials_of_valhalla/helpers/functions.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
@@ -39,7 +40,13 @@ class _PasswordResetPopupState extends State<PasswordResetPopup> {
       ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text(checkInbox),
+          content: Text(
+            checkInbox,
+            style: TextStyle(
+              fontSize: 16,
+              fontFamily: defaultFontFamily,
+            ),
+          ),
         ),
       );
       Navigator.pop(context);
@@ -70,8 +77,9 @@ class _PasswordResetPopupState extends State<PasswordResetPopup> {
             ),
             Text(
               passwordResetting,
-              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+              style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                     fontWeight: FontWeight.bold,
+                    fontFamily: defaultFontFamily,
                   ),
             ),
             const SizedBox(

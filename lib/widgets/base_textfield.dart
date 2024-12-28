@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trials_of_valhalla/helpers/constants.dart';
 
 class BaseTextfield extends StatefulWidget {
   const BaseTextfield({
@@ -45,6 +46,9 @@ class _BaseTextfieldState extends State<BaseTextfield> {
       child: TextFormField(
         keyboardType: widget.isEmail ? TextInputType.emailAddress : null,
         controller: widget.controller,
+        style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+              fontFamily: defaultFontFamily,
+            ),
         textInputAction: widget.inputAction,
         obscureText: widget.isPassword ? _hidden : false,
         obscuringCharacter: "●",
@@ -54,7 +58,8 @@ class _BaseTextfieldState extends State<BaseTextfield> {
           _focusNode.unfocus();
         },
         decoration: InputDecoration(
-          errorStyle: const TextStyle(color: Colors.red),
+          errorStyle:
+              const TextStyle(color: Colors.red, fontFamily: defaultFontFamily),
           filled: true,
           hintText: widget.hint,
           suffixIcon: widget.isPassword

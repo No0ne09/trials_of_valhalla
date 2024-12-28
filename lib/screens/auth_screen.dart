@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:trials_of_valhalla/helpers/constants.dart';
 import 'package:trials_of_valhalla/helpers/functions.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
 import 'package:trials_of_valhalla/helpers/validators.dart';
@@ -87,6 +88,9 @@ class _AuthScreenState extends State<AuthScreen> {
                       child: Text(
                         _isLogin ? noAccount : haveAccount,
                         overflow: TextOverflow.visible,
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            fontFamily: defaultFontFamily,
+                            fontWeight: FontWeight.normal),
                       ),
                     ),
                     const SizedBox(
@@ -142,11 +146,16 @@ class _AuthScreenState extends State<AuthScreen> {
                                         const PasswordResetPopup(),
                                   );
                                 },
-                                child: const Text(
+                                child: Text(
                                   passwordReset,
-                                  style: TextStyle(
-                                    decoration: TextDecoration.underline,
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge!
+                                      .copyWith(
+                                        fontFamily: defaultFontFamily,
+                                        fontWeight: FontWeight.normal,
+                                        decoration: TextDecoration.underline,
+                                      ),
                                 ),
                               ),
                             ),
