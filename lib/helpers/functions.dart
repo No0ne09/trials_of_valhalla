@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
-import 'package:trials_of_valhalla/widgets/info_popup.dart';
+import 'package:trials_of_valhalla/widgets/popups/info_popup.dart';
 
 Future<void> handleFirebaseError(String code, BuildContext context) async {
   String message;
