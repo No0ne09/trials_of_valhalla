@@ -66,56 +66,58 @@ class _PasswordResetPopupState extends State<PasswordResetPopup> {
       insetPadding: const EdgeInsets.all(8),
       content: Form(
         key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Row(
-              children: [
-                Spacer(),
-                CloseButton(),
-              ],
-            ),
-            Text(
-              passwordResetting,
-              style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                    fontWeight: FontWeight.normal,
-                    fontFamily: defaultFontFamily,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Row(
+                children: [
+                  Spacer(),
+                  CloseButton(),
+                ],
+              ),
+              Text(
+                passwordResetting,
+                style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                      fontWeight: FontWeight.normal,
+                      fontFamily: defaultFontFamily,
+                    ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Text(
+                emailInfo,
+                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                      fontFamily: defaultFontFamily,
+                    ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  BaseTextfield(
+                    validator: emailValidator,
+                    hint: "E-mail",
+                    controller: _emailController,
+                    isEmail: true,
                   ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Text(
-              emailInfo,
-              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                    fontFamily: defaultFontFamily,
+                  const SizedBox(
+                    height: 10,
                   ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                BaseTextfield(
-                  validator: emailValidator,
-                  hint: "E-mail",
-                  controller: _emailController,
-                  isEmail: true,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                _isLoading
-                    ? const CustomProgressIndicator()
-                    : AuthButton(
-                        onPressed: _resetPassword,
-                        text: sendMail,
-                      ),
-              ],
-            ),
-          ],
+                  _isLoading
+                      ? const CustomProgressIndicator()
+                      : AuthButton(
+                          onPressed: _resetPassword,
+                          text: sendMail,
+                        ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
