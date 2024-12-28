@@ -58,8 +58,8 @@ class _BaseTextfieldState extends State<BaseTextfield> {
           _focusNode.unfocus();
         },
         decoration: InputDecoration(
-          errorStyle:
-              const TextStyle(color: Colors.red, fontFamily: defaultFontFamily),
+          errorStyle: const TextStyle(
+              color: accentColor, fontFamily: defaultFontFamily),
           filled: true,
           hintText: widget.hint,
           suffixIcon: widget.isPassword

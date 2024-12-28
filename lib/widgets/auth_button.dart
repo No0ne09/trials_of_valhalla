@@ -13,6 +13,8 @@ class AuthButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+          backgroundColor: const Color.fromRGBO(150, 0, 0, 1)),
       onPressed: onPressed,
       child: Text(
         text,

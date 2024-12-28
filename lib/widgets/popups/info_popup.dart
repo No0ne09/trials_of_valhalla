@@ -19,7 +19,7 @@ class InfoPopup extends StatelessWidget {
             Navigator.pop(context);
           },
           style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.red, foregroundColor: Colors.white),
+              backgroundColor: accentColor, foregroundColor: Colors.white),
           child: Text(
             "Ok",
             style: Theme.of(context).textTheme.headlineSmall!.copyWith(
