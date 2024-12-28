@@ -20,6 +20,15 @@ class _AuthScreenState extends State<AuthScreen> {
   bool _isLogin = true;
   bool _isProcessing = false;
   final _authInstance = FirebaseAuth.instance;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
