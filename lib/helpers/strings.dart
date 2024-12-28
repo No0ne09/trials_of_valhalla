@@ -14,3 +14,8 @@ const serviceUnavailable =
     "Our services are temporarily unavailable. Try again later.";
 const unknownError = "An unexpected error has occurred. Try again later.";
 const error = "Error";
+const checkInbox = "Check your e-mail inbox";
+const emailInfo =
+    "You will receive an email that will allow you to change your password.";
+const sendMail = "Send e-mail";
+const passwordResetting = "Reset your password";

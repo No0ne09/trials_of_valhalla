@@ -5,6 +5,7 @@ import 'package:trials_of_valhalla/helpers/strings.dart';
 import 'package:trials_of_valhalla/helpers/validators.dart';
 import 'package:trials_of_valhalla/widgets/auth_button.dart';
 import 'package:trials_of_valhalla/widgets/base_textfield.dart';
+import 'package:trials_of_valhalla/widgets/popups/password_reset_popup.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -137,7 +138,8 @@ class _AuthScreenState extends State<AuthScreen> {
                                 onPressed: () async {
                                   await showDialog(
                                     context: context,
-                                    builder: (context) => const AlertDialog(),
+                                    builder: (context) =>
+                                        const PasswordResetPopup(),
                                   );
                                 },
                                 child: const Text(
