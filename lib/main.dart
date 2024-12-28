@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:trials_of_valhalla/helpers/firebase_options.dart';
+import 'package:trials_of_valhalla/screens/auth_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,10 +30,11 @@ class MyApp extends StatelessWidget {
             );
           }
           if (!snapshot.hasData) {
-            return const Placeholder();
+            return const AuthScreen();
           }
           return Container(
             color: Colors.black,
+            child: Text("Hello world"),
           );
         },
       ),

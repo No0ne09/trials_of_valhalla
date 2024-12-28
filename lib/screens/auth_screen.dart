@@ -1,0 +1,136 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:trials_of_valhalla/helpers/strings.dart';
+import 'package:trials_of_valhalla/helpers/validators.dart';
+import 'package:trials_of_valhalla/widgets/base_textfield.dart';
+
+class AuthScreen extends StatefulWidget {
+  const AuthScreen({super.key});
+
+  @override
+  State<AuthScreen> createState() => _AuthScreenState();
+}
+
+class _AuthScreenState extends State<AuthScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+  bool _isLogin = true;
+  bool _isProcessing = false;
+  final _authInstance = FirebaseAuth.instance;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: SizedBox(
+              width: double.infinity,
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        _formKey.currentState!.reset();
+                        setState(() {
+                          _isLogin = !_isLogin;
+                        });
+                      },
+                      child: Text(
+                        _isLogin ? noAccount : haveAccount,
+                        overflow: TextOverflow.visible,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Card(
+                        child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          BaseTextfield(
+                            hint: "E-mail",
+                            isEmail: true,
+                            validator: emailValidator,
+                            controller: _emailController,
+                          ),
+                          _isLogin
+                              ? BaseTextfield(
+                                  hint: password,
+                                  isPassword: true,
+                                  validator: basicValidator,
+                                  controller: _passwordController,
+                                )
+                              : Column(
+                                  children: [
+                                    BaseTextfield(
+                                      hint: password,
+                                      isPassword: true,
+                                      validator: createPasswordValidator(
+                                          _confirmPasswordController),
+                                      controller: _passwordController,
+                                    ),
+                                    BaseTextfield(
+                                      hint: confirmPassword,
+                                      isPassword: true,
+                                      validator: createPasswordValidator(
+                                          _passwordController),
+                                      controller: _confirmPasswordController,
+                                    ),
+                                  ],
+                                ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          /*if (_isLogin)
+                            ExcludeFocus(
+                              child: TextButton(
+                                onPressed: () async {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (context) => const AuthResetPopup(),
+                                  );
+                                },
+                                child: const Text(
+                                  passwordReset,
+                                  style: TextStyle(
+                                    decoration: TextDecoration.underline,
+                                  ),
+                                ),
+                              ),
+                            ),*/
+                        ],
+                      ),
+                    )),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    _isProcessing
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : const SizedBox(
+                            width: double.infinity,
+                            child: /*MainButton(
+                              onPressed: _validate,
+                              text: _isLogin ? login : register,
+                            ),*/
+                                Text("test"),
+                          ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
