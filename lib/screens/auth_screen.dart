@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
 import 'package:trials_of_valhalla/helpers/validators.dart';
+import 'package:trials_of_valhalla/widgets/auth_button.dart';
 import 'package:trials_of_valhalla/widgets/base_textfield.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -116,13 +117,12 @@ class _AuthScreenState extends State<AuthScreen> {
                         ? const Center(
                             child: CircularProgressIndicator(),
                           )
-                        : const SizedBox(
+                        : SizedBox(
                             width: double.infinity,
-                            child: /*MainButton(
-                              onPressed: _validate,
+                            child: AuthButton(
+                              onPressed: () {},
                               text: _isLogin ? login : register,
-                            ),*/
-                                Text("test"),
+                            ),
                           ),
                   ],
                 ),
