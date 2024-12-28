@@ -66,6 +66,17 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        forceMaterialTransparency: true,
+        title: SizedBox(
+          height: kToolbarHeight,
+          child: Image.asset(
+            'assets/images/logo.png',
+            fit: BoxFit.contain,
+          ),
+        ),
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
