@@ -99,9 +99,12 @@ class _AuthScreenState extends State<AuthScreen> {
                       child: Text(
                         _isLogin ? noAccount : haveAccount,
                         overflow: TextOverflow.visible,
-                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            fontFamily: defaultFontFamily,
-                            fontWeight: FontWeight.normal),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineSmall!
+                            .copyWith(
+                                fontFamily: defaultFontFamily,
+                                fontWeight: FontWeight.normal),
                       ),
                     ),
                     const SizedBox(

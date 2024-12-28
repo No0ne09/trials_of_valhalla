@@ -22,9 +22,8 @@ class InfoPopup extends StatelessWidget {
               backgroundColor: accentColor, foregroundColor: Colors.white),
           child: Text(
             "Ok",
-            style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+            style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                   fontFamily: defaultFontFamily,
-                  fontWeight: FontWeight.bold,
                 ),
           ),
         ),
@@ -38,7 +37,7 @@ class InfoPopup extends StatelessWidget {
       ),
       content: Text(
         desc,
-        style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+        style: Theme.of(context).textTheme.titleLarge!.copyWith(
               fontFamily: defaultFontFamily,
             ),
       ),

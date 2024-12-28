@@ -20,7 +20,7 @@ class AuthButton extends StatelessWidget {
         text,
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.titleLarge!.copyWith(
-            fontWeight: FontWeight.bold, fontFamily: defaultFontFamily),
+            fontWeight: FontWeight.normal, fontFamily: defaultFontFamily),
       ),
     );
   }

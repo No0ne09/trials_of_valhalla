@@ -47,7 +47,7 @@ class _BaseTextfieldState extends State<BaseTextfield> {
         cursorColor: accentColor,
         keyboardType: widget.isEmail ? TextInputType.emailAddress : null,
         controller: widget.controller,
-        style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+        style: Theme.of(context).textTheme.headlineMedium!.copyWith(
               fontFamily: defaultFontFamily,
             ),
         textInputAction: widget.inputAction,

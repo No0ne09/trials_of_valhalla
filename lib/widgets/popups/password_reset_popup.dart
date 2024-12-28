@@ -78,7 +78,7 @@ class _PasswordResetPopupState extends State<PasswordResetPopup> {
             Text(
               passwordResetting,
               style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.normal,
                     fontFamily: defaultFontFamily,
                   ),
             ),
