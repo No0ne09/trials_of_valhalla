@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:trials_of_valhalla/helpers/firebase_options.dart';
 import 'package:trials_of_valhalla/screens/auth_screen.dart';
+import 'package:trials_of_valhalla/widgets/custom_progress_indicator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,15 +24,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       themeMode: ThemeMode.dark,
       darkTheme: ThemeData.dark(),
-      title: 'Flutter Demo',
       home: StreamBuilder(
         stream: FirebaseAuth.instance.idTokenChanges(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(),
-              ),
+              body: CustomProgressIndicator(),
             );
           }
           if (!snapshot.hasData) {

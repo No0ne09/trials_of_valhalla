@@ -6,6 +6,7 @@ import 'package:trials_of_valhalla/helpers/strings.dart';
 import 'package:trials_of_valhalla/helpers/validators.dart';
 import 'package:trials_of_valhalla/widgets/auth_button.dart';
 import 'package:trials_of_valhalla/widgets/base_textfield.dart';
+import 'package:trials_of_valhalla/widgets/custom_progress_indicator.dart';
 import 'package:trials_of_valhalla/widgets/popups/password_reset_popup.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -180,9 +181,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       height: 8,
                     ),
                     _isProcessing
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
+                        ? const CustomProgressIndicator()
                         : SizedBox(
                             width: double.infinity,
                             child: AuthButton(
