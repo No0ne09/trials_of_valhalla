@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trials_of_valhalla/helpers/constants.dart';
+import 'package:trials_of_valhalla/helpers/theme.dart';
 
 class InfoPopup extends StatelessWidget {
   const InfoPopup({

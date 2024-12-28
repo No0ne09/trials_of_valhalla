@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:trials_of_valhalla/helpers/constants.dart';
+import 'package:trials_of_valhalla/helpers/theme.dart';
 
 import 'package:trials_of_valhalla/helpers/functions.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';

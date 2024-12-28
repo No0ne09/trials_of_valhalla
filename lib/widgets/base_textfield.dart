@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trials_of_valhalla/helpers/constants.dart';
+import 'package:trials_of_valhalla/helpers/theme.dart';
 
 class BaseTextfield extends StatefulWidget {
   const BaseTextfield({
@@ -44,6 +44,7 @@ class _BaseTextfieldState extends State<BaseTextfield> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
+        cursorColor: accentColor,
         keyboardType: widget.isEmail ? TextInputType.emailAddress : null,
         controller: widget.controller,
         style: Theme.of(context).textTheme.headlineSmall!.copyWith(
@@ -58,24 +59,32 @@ class _BaseTextfieldState extends State<BaseTextfield> {
           _focusNode.unfocus();
         },
         decoration: InputDecoration(
+          errorBorder: getTextFieldBorder(color: accentColor),
           errorStyle: const TextStyle(
-              color: accentColor, fontFamily: defaultFontFamily),
+            color: accentColor,
+            fontFamily: defaultFontFamily,
+            fontSize: 16,
+          ),
           filled: true,
           hintText: widget.hint,
+          iconColor: accentColor,
           suffixIcon: widget.isPassword
               ? ExcludeFocus(
                   child: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        _hidden = !_hidden;
-                      });
-                    },
-                    icon: _hidden
-                        ? const Icon(Icons.visibility_off)
-                        : const Icon(Icons.visibility),
-                  ),
+                      onPressed: () {
+                        setState(() {
+                          _hidden = !_hidden;
+                        });
+                      },
+                      icon: Icon(
+                        _hidden ? Icons.visibility_off : Icons.visibility,
+                        color: accentColor,
+                      )),
                 )
               : null,
+          enabledBorder: getTextFieldBorder(),
+          focusedBorder: getTextFieldBorder(),
+          border: getTextFieldBorder(),
         ),
       ),
     );
