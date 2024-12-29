@@ -44,7 +44,7 @@ class _ContentScreenState extends State<ContentScreen> {
               const Spacer(),
               FittedBox(
                 child: Text(
-                  "Trails of Valhalla",
+                  "Trials of Valhalla",
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.displayLarge!.copyWith(
                         fontFamily: defaultFontFamily,
