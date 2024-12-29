@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:trials_of_valhalla/helpers/firebase_options.dart';
 import 'package:trials_of_valhalla/screens/auth_screen.dart';
 import 'package:trials_of_valhalla/screens/content_screen.dart';
-import 'package:trials_of_valhalla/widgets/custom_progress_indicator.dart';
+import 'package:trials_of_valhalla/widgets/layout/custom_progress_indicator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

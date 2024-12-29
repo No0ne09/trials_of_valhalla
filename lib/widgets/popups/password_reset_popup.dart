@@ -7,7 +7,7 @@ import 'package:trials_of_valhalla/helpers/strings.dart';
 import 'package:trials_of_valhalla/helpers/validators.dart';
 import 'package:trials_of_valhalla/widgets/auth_button.dart';
 import 'package:trials_of_valhalla/widgets/base_textfield.dart';
-import 'package:trials_of_valhalla/widgets/custom_progress_indicator.dart';
+import 'package:trials_of_valhalla/widgets/layout/custom_progress_indicator.dart';
 
 class PasswordResetPopup extends StatefulWidget {
   const PasswordResetPopup({super.key});

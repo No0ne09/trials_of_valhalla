@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:trials_of_valhalla/widgets/background.dart';
+import 'package:trials_of_valhalla/widgets/layout/background.dart';
 
 class ContentScreen extends StatefulWidget {
   const ContentScreen({super.key});
