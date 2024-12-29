@@ -110,6 +110,8 @@ class _AuthScreenState extends State<AuthScreen> {
                         children: [
                           Center(
                             child: TextButton(
+                              style: TextButton.styleFrom(
+                                  overlayColor: accentColor),
                               onPressed: () {
                                 _formKey.currentState!.reset();
                                 setState(() {
@@ -123,9 +125,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                     .textTheme
                                     .headlineSmall!
                                     .copyWith(
-                                        fontFamily: defaultFontFamily,
-                                        fontWeight: FontWeight.normal,
-                                        color: accentColor),
+                                      fontFamily: defaultFontFamily,
+                                      fontWeight: FontWeight.normal,
+                                    ),
                               ),
                             ),
                           ),
@@ -169,6 +171,8 @@ class _AuthScreenState extends State<AuthScreen> {
                           if (_isLogin)
                             ExcludeFocus(
                               child: TextButton(
+                                style: TextButton.styleFrom(
+                                    overlayColor: accentColor),
                                 onPressed: () async {
                                   await showDialog(
                                     context: context,
