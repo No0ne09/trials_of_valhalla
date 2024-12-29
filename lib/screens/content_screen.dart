@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
 import 'package:trials_of_valhalla/helpers/theme.dart';
+import 'package:trials_of_valhalla/screens/game_screen.dart';
+import 'package:trials_of_valhalla/screens/leaderboard_screen.dart';
+import 'package:trials_of_valhalla/screens/settings_screen.dart';
 import 'package:trials_of_valhalla/widgets/buttons/main_button.dart';
 import 'package:trials_of_valhalla/widgets/layout/background.dart';
 
@@ -14,6 +17,12 @@ class ContentScreen extends StatefulWidget {
 }
 
 class _ContentScreenState extends State<ContentScreen> {
+  void _navigate(Widget screen) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => screen,
+    ));
+  }
+
   @override
   void initState() {
     super.initState();
@@ -43,17 +52,23 @@ class _ContentScreenState extends State<ContentScreen> {
                 ),
               ),
               MainButton(
-                onPressed: () {},
+                onPressed: () {
+                  _navigate(const GameScreen());
+                },
                 text: play,
                 icon: const Icon(Icons.play_arrow),
               ),
               MainButton(
-                onPressed: () {},
+                onPressed: () {
+                  _navigate(const SettingsScreen());
+                },
                 text: settings,
                 icon: const Icon(Icons.settings),
               ),
               MainButton(
-                onPressed: () {},
+                onPressed: () {
+                  _navigate(const LeaderboardScreen());
+                },
                 text: leaderboard,
                 icon: const Icon(Icons.leaderboard),
               ),
