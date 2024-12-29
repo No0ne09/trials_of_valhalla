@@ -6,13 +6,8 @@ class Player extends SpriteAnimationComponent
     with CollisionCallbacks, HasGameRef {
   Player({
     required this.gameSize,
-  }) : super(size: Vector2(3 * 96, 3 * 96));
+  }) : super(size: Vector2(gameSize[1] / 2, gameSize[1] / 2));
   final Vector2 gameSize;
-
-  final baseHitBox = RectangleHitbox(
-      anchor: Anchor.center,
-      position: Vector2(150, 170),
-      size: Vector2(90, 150));
 
   Future<void> runAnimation() async {
     SpriteSheet spriteSheet = SpriteSheet(
@@ -28,7 +23,19 @@ class Player extends SpriteAnimationComponent
   Future<void> onLoad() async {
     super.onLoad();
     await runAnimation();
+    final baseHitBox = RectangleHitbox(
+      position: Vector2(
+        size[0] * 0.35,
+        size[1] * 0.33,
+      ),
+      size: Vector2(
+        size[0] * 0.32,
+        size[1] * 0.52,
+      ),
+    );
     add(baseHitBox);
+    print(gameSize);
+    print(size);
     debugMode = true;
   }
 }
