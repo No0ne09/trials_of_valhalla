@@ -7,6 +7,7 @@ class Player extends SpriteAnimationComponent
     with CollisionCallbacks, HasGameRef {
   bool _isJumping = false;
   bool _isAttacking = false;
+  bool _jumpAttack = false;
   double _movement = 0;
   late double _gravity;
   late double _jumpStrength;
@@ -73,12 +74,17 @@ class Player extends SpriteAnimationComponent
     if (_isJumping) {
       y += _movement;
       _movement += _gravity;
-      if (y >= _baseY) {
-        _isJumping = false;
-        y = _baseY;
-        remove(_jumpHitbox);
-        add(_baseHitbox);
-        await _setRunAnimation();
+      //this check is needed for rare cases when attack and jump are ending at the same time and bad things are happening
+      if (!_isAttacking) {
+        if (y >= _baseY) {
+          _isJumping = false;
+          _jumpAttack = false;
+          y = _baseY;
+          add(_jumpHitbox);
+          remove(_jumpHitbox);
+          add(_baseHitbox);
+          await _setRunAnimation();
+        }
       }
     }
   }
@@ -112,8 +118,12 @@ class Player extends SpriteAnimationComponent
 
   Future<void> attack() async {
     if (!_isAttacking) {
-      remove(_baseHitbox);
-
+      if (_isJumping && !_jumpAttack) {
+        remove(_jumpHitbox);
+        _jumpAttack = true;
+      } else {
+        remove(_baseHitbox);
+      }
       add(_attackHitbox);
       SpriteSheet spriteSheet = SpriteSheet(
         image: await gameRef.images.load(characterPath),
@@ -121,7 +131,7 @@ class Player extends SpriteAnimationComponent
       );
       SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
         row: 9,
-        stepTime: 0.05,
+        stepTime: 0.5,
         from: 0,
         to: 3,
         loop: false,
