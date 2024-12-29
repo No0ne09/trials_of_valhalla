@@ -62,7 +62,6 @@ class Player extends SpriteAnimationComponent
       if (y >= baseY) {
         isJumping = false;
         y = baseY;
-        add(jumpHitbox);
         remove(jumpHitbox);
         add(baseHitbox);
         await setRunAnimation();
