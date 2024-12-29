@@ -35,12 +35,12 @@ class Player extends SpriteAnimationComponent
 
     jumpHitbox = RectangleHitbox(
       position: Vector2(
-        size[0] * 0.35,
-        size[1] * 0.33,
+        size[0] * 0.3,
+        size[1] * 0.2,
       ),
       size: Vector2(
-        size[0] * 0.35,
-        size[1] * 0.52,
+        size[0] * 0.3,
+        size[1] * 0.45,
       ),
     );
     jumpStrength = size[0] / 20;
@@ -51,11 +51,12 @@ class Player extends SpriteAnimationComponent
   @override
   void update(double dt) async {
     super.update(dt);
+    //resetting y for rare cases when jump is ending too
     if (y >= baseY) {
       y = baseY;
     }
+    //if player isjumping then its y is changing as long as it's higher or equal base y position
     if (isJumping) {
-      print(y);
       y += movement;
       movement += gravity;
       if (y >= baseY) {
