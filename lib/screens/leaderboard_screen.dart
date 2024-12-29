@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
 import 'package:trials_of_valhalla/widgets/layout/complex_screen_base.dart';
 import 'package:trials_of_valhalla/widgets/layout/custom_progress_indicator.dart';
-import 'package:trials_of_valhalla/widgets/leaderboard_tile.dart';
+import 'package:trials_of_valhalla/widgets/leaderboard/leaderboard_tile.dart';
 
 class LeaderboardScreen extends StatefulWidget {
   const LeaderboardScreen({super.key});
