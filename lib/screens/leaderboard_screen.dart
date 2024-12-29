@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
-import 'package:trials_of_valhalla/helpers/theme.dart';
 import 'package:trials_of_valhalla/widgets/layout/complex_screen_base.dart';
 import 'package:trials_of_valhalla/widgets/layout/custom_progress_indicator.dart';
+import 'package:trials_of_valhalla/widgets/leaderboard_tile.dart';
 
 class LeaderboardScreen extends StatefulWidget {
   const LeaderboardScreen({super.key});
@@ -39,55 +39,30 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
   @override
   Widget build(BuildContext context) {
     return ComplexScreenBase(
+        divider: 1.25,
         title: leaderboard,
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width / 1.25,
-          child: FutureBuilder(
-            future: _data,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CustomProgressIndicator();
-              }
-              if (snapshot.hasError) {
-                return const Center(
-                  child: Text(unknownError),
-                );
-              }
-              final data = snapshot.data!;
-              return ListView.builder(
-                itemCount: data.length,
-                itemBuilder: (context, index) => Card(
-                  child: ListTile(
-                    textColor: Colors.white,
-                    leading: Text(
-                      textAlign: TextAlign.center,
-                      "${index + 1}",
-                      style:
-                          Theme.of(context).textTheme.displayMedium!.copyWith(
-                                fontFamily: defaultFontFamily,
-                                color: accentColor,
-                              ),
-                    ),
-                    trailing: Text(
-                      "${data[index]["score"].toString()} points",
-                      style:
-                          Theme.of(context).textTheme.headlineMedium!.copyWith(
-                                fontFamily: defaultFontFamily,
-                              ),
-                    ),
-                    title: Text(
-                      softWrap: true,
-                      "very very very very very long mail",
-                      style:
-                          Theme.of(context).textTheme.headlineLarge!.copyWith(
-                                fontFamily: defaultFontFamily,
-                              ),
-                    ),
-                  ),
-                ),
+        child: FutureBuilder(
+          future: _data,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CustomProgressIndicator();
+            }
+            if (snapshot.hasError) {
+              return const Center(
+                child: Text(unknownError),
               );
-            },
-          ),
+            }
+            final data = snapshot.data!;
+            return ListView.builder(
+              itemCount: data.length,
+              itemBuilder: (context, index) => Card(
+                child: LeaderboardTile(
+                  index: index,
+                  data: data[index],
+                ),
+              ),
+            );
+          },
         ));
   }
 }

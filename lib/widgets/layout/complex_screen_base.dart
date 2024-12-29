@@ -6,10 +6,12 @@ class ComplexScreenBase extends StatelessWidget {
   const ComplexScreenBase({
     required this.title,
     required this.child,
+    required this.divider,
     super.key,
   });
   final String title;
   final Widget child;
+  final double divider;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +31,10 @@ class ComplexScreenBase extends StatelessWidget {
         child: Background(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: child,
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width / divider,
+              child: child,
+            ),
           ),
         ),
       ),

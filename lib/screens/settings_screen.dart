@@ -14,36 +14,34 @@ class SettingsScreen extends ConsumerWidget {
     final music = ref.watch(bgMusicProvider);
     final sfx = ref.watch(sfxProvider);
     return ComplexScreenBase(
+      divider: 1.8,
       title: settings,
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width / 1.8,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomSwitch(
-                text: useShake,
-                value: shake,
-                onChanged: (value) {
-                  ref.read(shakeProvider.notifier).state = value;
-                },
-              ),
-              CustomSwitch(
-                text: playMusic,
-                value: music,
-                onChanged: (value) {
-                  ref.read(bgMusicProvider.notifier).state = value;
-                },
-              ),
-              CustomSwitch(
-                text: playSfx,
-                value: sfx,
-                onChanged: (value) {
-                  ref.read(sfxProvider.notifier).state = value;
-                },
-              ),
-            ],
-          ),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CustomSwitch(
+              text: useShake,
+              value: shake,
+              onChanged: (value) {
+                ref.read(shakeProvider.notifier).state = value;
+              },
+            ),
+            CustomSwitch(
+              text: playMusic,
+              value: music,
+              onChanged: (value) {
+                ref.read(bgMusicProvider.notifier).state = value;
+              },
+            ),
+            CustomSwitch(
+              text: playSfx,
+              value: sfx,
+              onChanged: (value) {
+                ref.read(sfxProvider.notifier).state = value;
+              },
+            ),
+          ],
         ),
       ),
     );
