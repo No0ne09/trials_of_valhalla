@@ -23,7 +23,7 @@ class AttackButton extends PositionComponent with TapCallbacks, HasGameRef {
 
   @override
   void onTapDown(TapDownEvent event) {
-    character.jump();
+    character.attack();
 
     super.onTapDown(event);
   }
