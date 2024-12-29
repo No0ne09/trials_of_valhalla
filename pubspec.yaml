@@ -70,6 +70,7 @@ flutter:
   assets:
      - assets/images/
      - assets/images/parallax/
+     - assets/images/game_images/
     
 
   #   - images/a_dot_ham.jpeg
