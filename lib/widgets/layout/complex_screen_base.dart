@@ -25,16 +25,14 @@ class ComplexScreenBase extends StatelessWidget {
         ),
         centerTitle: true,
         forceMaterialTransparency: true,
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
       ),
-      body: SafeArea(
-        child: Background(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width / divider,
-              child: child,
-            ),
+      body: Background(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width / divider,
+            child: child,
           ),
         ),
       ),
