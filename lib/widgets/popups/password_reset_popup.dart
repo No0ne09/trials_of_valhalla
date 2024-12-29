@@ -5,7 +5,7 @@ import 'package:trials_of_valhalla/helpers/theme.dart';
 import 'package:trials_of_valhalla/helpers/functions.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
 import 'package:trials_of_valhalla/helpers/validators.dart';
-import 'package:trials_of_valhalla/widgets/auth_button.dart';
+import 'package:trials_of_valhalla/widgets/buttons/main_button.dart';
 import 'package:trials_of_valhalla/widgets/base_textfield.dart';
 import 'package:trials_of_valhalla/widgets/layout/custom_progress_indicator.dart';
 
@@ -110,7 +110,7 @@ class _PasswordResetPopupState extends State<PasswordResetPopup> {
                   ),
                   _isLoading
                       ? const CustomProgressIndicator()
-                      : AuthButton(
+                      : MainButton(
                           onPressed: _resetPassword,
                           text: sendMail,
                         ),

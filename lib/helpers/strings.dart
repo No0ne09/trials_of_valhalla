@@ -19,3 +19,7 @@ const emailInfo =
     "You will receive an email that will allow you to change your password.";
 const sendMail = "Send e-mail";
 const passwordResetting = "Reset your password";
+const play = "Play";
+const settings = "Settings";
+const leaderboard = "Leaderboard ";
+const logout = "Log out";
