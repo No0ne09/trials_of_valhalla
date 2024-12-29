@@ -35,5 +35,7 @@ class Player extends SpriteAnimationComponent
     debugMode = true;
   }
 
-  void jump() {}
+  void jump() {
+    print("hop hop hop");
+  }
 }
