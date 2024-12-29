@@ -23,3 +23,6 @@ const play = "Play";
 const settings = "Settings";
 const leaderboard = "Leaderboard ";
 const logout = "Log out";
+const useShake = "Shake device to attack";
+const playMusic = "Play background music";
+const playSfx = "Play sound effects";

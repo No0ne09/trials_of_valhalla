@@ -29,27 +29,27 @@ class SettingsScreen extends ConsumerWidget {
         body: SafeArea(
           child: Background(
             child: SizedBox(
-              width: MediaQuery.of(context).size.width / 2,
+              width: MediaQuery.of(context).size.width / 1.8,
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CustomSwitch(
-                      text: "Shake device to attack",
+                      text: useShake,
                       value: shake,
                       onChanged: (value) {
                         ref.read(shakeProvider.notifier).state = value;
                       },
                     ),
                     CustomSwitch(
-                      text: "Play background music",
+                      text: playMusic,
                       value: music,
                       onChanged: (value) {
                         ref.read(bgMusicProvider.notifier).state = value;
                       },
                     ),
                     CustomSwitch(
-                      text: "Play sound effects",
+                      text: playSfx,
                       value: sfx,
                       onChanged: (value) {
                         ref.read(sfxProvider.notifier).state = value;
