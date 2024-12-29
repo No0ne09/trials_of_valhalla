@@ -53,11 +53,11 @@ class Player extends SpriteAnimationComponent
 
     _attackHitbox = RectangleHitbox(
       position: Vector2(
-        size[0] * 0.35,
+        size[0] * 0.33,
         size[1] * 0.33,
       ),
       size: Vector2(
-        size[0] * 0.4,
+        size[0] * 0.43,
         size[1] * 0.52,
       ),
     );
