@@ -1,10 +1,65 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trials_of_valhalla/helpers/providers.dart';
+import 'package:trials_of_valhalla/helpers/strings.dart';
+import 'package:trials_of_valhalla/helpers/theme.dart';
+import 'package:trials_of_valhalla/widgets/layout/background.dart';
+import 'package:trials_of_valhalla/widgets/settings/custom_switch.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final shake = ref.watch(shakeProvider);
+    final music = ref.watch(bgMusicProvider);
+    final sfx = ref.watch(sfxProvider);
+    return Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          forceMaterialTransparency: true,
+          automaticallyImplyLeading: true,
+          title: Text(
+            settings,
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                  fontFamily: defaultFontFamily,
+                ),
+          ),
+        ),
+        body: SafeArea(
+          child: Background(
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width / 2,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomSwitch(
+                      text: "Shake device to attack",
+                      value: shake,
+                      onChanged: (value) {
+                        ref.read(shakeProvider.notifier).state = value;
+                      },
+                    ),
+                    CustomSwitch(
+                      text: "Play background music",
+                      value: music,
+                      onChanged: (value) {
+                        ref.read(bgMusicProvider.notifier).state = value;
+                      },
+                    ),
+                    CustomSwitch(
+                      text: "Play sound effects",
+                      value: sfx,
+                      onChanged: (value) {
+                        ref.read(sfxProvider.notifier).state = value;
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ));
   }
 }
