@@ -40,6 +40,7 @@ dependencies:
   form_validator: ^2.1.1
   flutter_riverpod: ^2.6.1
   cloud_firestore: ^5.6.0
+  connectivity_plus: ^6.1.1
 
 dev_dependencies:
   flutter_test:

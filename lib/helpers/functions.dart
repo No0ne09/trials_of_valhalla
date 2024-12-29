@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
 import 'package:trials_of_valhalla/widgets/popups/info_popup.dart';
@@ -33,4 +34,15 @@ Future<void> showInfoPopup(BuildContext context, String desc,
     builder: (context) => InfoPopup(title: title, desc: desc),
     barrierDismissible: false,
   );
+}
+
+Future<bool> checkConnection() async {
+  final result = await Connectivity().checkConnectivity();
+
+  if (result.contains(ConnectivityResult.wifi) ||
+      result.contains(ConnectivityResult.mobile) ||
+      result.contains(ConnectivityResult.ethernet)) {
+    return true;
+  }
+  return false;
 }

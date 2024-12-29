@@ -26,3 +26,5 @@ const logout = "Log out";
 const useShake = "Shake device to attack";
 const playMusic = "Play background music";
 const playSfx = "Play sound effects";
+const noConnectionPopUpInfo =
+    "You are using offline mode, some of the functions may not work properly.";
