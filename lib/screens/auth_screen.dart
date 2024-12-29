@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:trials_of_valhalla/helpers/theme.dart';
 import 'package:trials_of_valhalla/helpers/functions.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
 import 'package:trials_of_valhalla/helpers/validators.dart';
 import 'package:trials_of_valhalla/widgets/auth_button.dart';
+import 'package:trials_of_valhalla/widgets/background.dart';
 import 'package:trials_of_valhalla/widgets/base_textfield.dart';
 import 'package:trials_of_valhalla/widgets/custom_progress_indicator.dart';
 import 'package:trials_of_valhalla/widgets/popups/password_reset_popup.dart';
@@ -57,6 +59,13 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    SystemChrome.setPreferredOrientations([]);
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  }
+
+  @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
@@ -81,7 +90,7 @@ class _AuthScreenState extends State<AuthScreen> {
           ),
         ),
       ),
-      body: Center(
+      body: Background(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -93,33 +102,36 @@ class _AuthScreenState extends State<AuthScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    TextButton(
-                      onPressed: () {
-                        _formKey.currentState!.reset();
-                        setState(() {
-                          _isLogin = !_isLogin;
-                        });
-                      },
-                      child: Text(
-                        _isLogin ? noAccount : haveAccount,
-                        overflow: TextOverflow.visible,
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineSmall!
-                            .copyWith(
-                                fontFamily: defaultFontFamily,
-                                fontWeight: FontWeight.normal),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
                     Card(
                         child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Center(
+                            child: TextButton(
+                              onPressed: () {
+                                _formKey.currentState!.reset();
+                                setState(() {
+                                  _isLogin = !_isLogin;
+                                });
+                              },
+                              child: Text(
+                                _isLogin ? noAccount : haveAccount,
+                                overflow: TextOverflow.visible,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall!
+                                    .copyWith(
+                                        fontFamily: defaultFontFamily,
+                                        fontWeight: FontWeight.normal,
+                                        color: accentColor),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
                           BaseTextfield(
                             hint: "E-mail",
                             isEmail: true,
