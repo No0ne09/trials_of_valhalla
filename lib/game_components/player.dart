@@ -4,11 +4,6 @@ import 'package:flame/sprite.dart';
 
 class Player extends SpriteAnimationComponent
     with CollisionCallbacks, HasGameRef {
-  Player({
-    required this.gameSize,
-  }) : super(size: Vector2(gameSize[1] / 2, gameSize[1] / 2));
-  final Vector2 gameSize;
-
   Future<void> runAnimation() async {
     SpriteSheet spriteSheet = SpriteSheet(
       image: await gameRef.images.load("game_images/character.png"),
@@ -23,6 +18,9 @@ class Player extends SpriteAnimationComponent
   Future<void> onLoad() async {
     super.onLoad();
     await runAnimation();
+    size = Vector2(gameRef.size[1] / 2, gameRef.size[1] / 2);
+    position = Vector2(0, gameRef.size[1] - size[1]);
+
     final baseHitBox = RectangleHitbox(
       position: Vector2(
         size[0] * 0.35,
@@ -34,8 +32,8 @@ class Player extends SpriteAnimationComponent
       ),
     );
     add(baseHitBox);
-    print(gameSize);
-    print(size);
     debugMode = true;
   }
+
+  void jump() {}
 }
