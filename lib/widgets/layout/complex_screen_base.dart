@@ -27,7 +27,10 @@ class ComplexScreenBase extends StatelessWidget {
       ),
       body: SafeArea(
         child: Background(
-          child: child,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: child,
+          ),
         ),
       ),
     );
