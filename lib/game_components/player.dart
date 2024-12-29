@@ -101,6 +101,10 @@ class Player extends SpriteAnimationComponent
 
   void jump() async {
     if (!_isJumping) {
+      if (_isAttacking) {
+        animationTicker?.setToLast();
+      }
+      print("a teraz tutaj");
       remove(_baseHitbox);
       add(_jumpHitbox);
       _isJumping = true;
@@ -131,16 +135,17 @@ class Player extends SpriteAnimationComponent
       );
       SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
         row: 9,
-        stepTime: 0.5,
+        stepTime: 0.08,
         from: 0,
         to: 3,
         loop: false,
       );
       animation = spriteAnimation;
       _isAttacking = true;
-      animationTicker!.onComplete = () async {
+      animationTicker?.onComplete = () async {
         _isAttacking = false;
         remove(_attackHitbox);
+        print("tutaj");
         add(_baseHitbox);
         await _setRunAnimation();
       };
