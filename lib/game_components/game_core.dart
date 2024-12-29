@@ -4,6 +4,7 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 
 import 'package:flame/parallax.dart';
+import 'package:trials_of_valhalla/game_components/attack_button.dart';
 import 'package:trials_of_valhalla/game_components/jump_button.dart';
 import 'package:trials_of_valhalla/game_components/player.dart';
 
@@ -34,6 +35,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
     );
     add(parallaxBackground2);
     add(JumpButton(player));
+    add(AttackButton(player));
     return super.onLoad();
   }
 }
