@@ -16,6 +16,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
   late double _obstacleTimerPeriod;
   double _enemyTimer = 0;
   double _obstacleTimer = 0;
+  final _random = Random();
   @override
   FutureOr<void> onLoad() async {
     final parallaxBackground = await loadParallaxComponent(
@@ -58,7 +59,8 @@ class GameCore extends FlameGame with HasCollisionDetection {
       add(obstacle);
     }
     if (_enemyTimer >= _enemyTimerPeriod) {
-      final enemy = Enemy(type: EnemyType.bat);
+      final enemy = Enemy(
+          type: EnemyType.values[_random.nextInt(EnemyType.values.length)]);
       _enemyTimer = 0;
       add(enemy);
     }
