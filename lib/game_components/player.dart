@@ -126,6 +126,7 @@ class Player extends SpriteAnimationComponent
 
   void attack() {
     if (!_isAttacking) {
+      _isAttacking = true;
       if (_isJumping && !_jumpAttack) {
         remove(_jumpHitbox);
         _jumpAttack = true;
@@ -145,7 +146,7 @@ class Player extends SpriteAnimationComponent
         loop: false,
       );
       animation = spriteAnimation;
-      _isAttacking = true;
+
       animationTicker?.onComplete = () {
         _isAttacking = false;
         remove(_attackHitbox);
@@ -159,15 +160,14 @@ class Player extends SpriteAnimationComponent
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is Enemy) {
       if (other.isDead) {
-        print("is dead");
       } else if (_isAttacking) {
         other.onHit();
         gameRef.score += 1;
       } else {
-        print("collision with ${other.runtimeType}");
+        //  print("collision with ${other.runtimeType}");
       }
     } else {
-      print("collision with ${other.runtimeType}");
+      // print("collision with ${other.runtimeType}");
     }
     super.onCollision(intersectionPoints, other);
   }
