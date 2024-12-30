@@ -3,11 +3,13 @@ import 'dart:ui';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
+import 'package:trials_of_valhalla/game_components/enemy.dart';
+import 'package:trials_of_valhalla/game_components/game_core.dart';
 
 import 'package:trials_of_valhalla/helpers/consts.dart';
 
 class Player extends SpriteAnimationComponent
-    with CollisionCallbacks, HasGameRef {
+    with CollisionCallbacks, HasGameRef<GameCore> {
   bool _isJumping = false;
   bool _isAttacking = false;
   bool _jumpAttack = false;
@@ -151,5 +153,16 @@ class Player extends SpriteAnimationComponent
         _setRunAnimation();
       };
     }
+  }
+
+  @override
+  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+    if (_isAttacking) {
+      if (other is Enemy) {
+        other.onHit();
+      }
+      gameRef.score += 1;
+    } else {}
+    super.onCollision(intersectionPoints, other);
   }
 }

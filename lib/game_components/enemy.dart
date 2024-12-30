@@ -69,4 +69,8 @@ class Enemy extends SpriteAnimationComponent
     }
     super.update(dt);
   }
+
+  void onHit() {
+    print("hit");
+  }
 }

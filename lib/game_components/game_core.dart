@@ -17,13 +17,13 @@ class GameCore extends FlameGame with HasCollisionDetection {
   late double _obstacleTimerPeriod;
   double _enemyTimer = 0;
   double _obstacleTimer = 0;
-  int _score = 0;
+  int score = 0;
   late TextComponent _scoreComponent;
   final _random = Random();
   @override
   FutureOr<void> onLoad() async {
     _scoreComponent = TextComponent(
-      text: _score.toString(),
+      text: score.toString(),
       position: Vector2(size.x / 2, 10),
       anchor: Anchor.topCenter,
       textRenderer: TextPaint(
@@ -65,8 +65,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
 
   @override
   void update(double dt) {
-    _score += 1;
-    _scoreComponent.text = _score.toString();
+    _scoreComponent.text = score.toString();
     _enemyTimerPeriod = max(1.0, 1.0);
     _enemyTimer += dt;
     _obstacleTimerPeriod = max(2.0, 2.0);
