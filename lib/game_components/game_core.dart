@@ -26,7 +26,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
     final player = Player();
 
     add(player);
-    add(Enemy(type: EnemyType.values[0]));
+    add(Enemy(type: EnemyType.values[2]));
     final parallaxBackground2 = await loadParallaxComponent(
       [
         ParallaxImageData('parallax/5.png'),

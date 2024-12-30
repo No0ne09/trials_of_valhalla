@@ -85,7 +85,10 @@ class Enemy extends SpriteAnimationComponent
 
   @override
   void update(double dt) {
-    // TODO: implement update
+    x -= 1;
+    if (x <= -size.x) {
+      removeFromParent();
+    }
     super.update(dt);
   }
 }
