@@ -7,6 +7,6 @@ class GameScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GameWidget(game: GameCore());
+    return PopScope(canPop: false, child: GameWidget(game: GameCore()));
   }
 }
