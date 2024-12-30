@@ -108,7 +108,6 @@ class Player extends SpriteAnimationComponent
       if (_isAttacking) {
         animationTicker?.setToLast();
       }
-      print("a teraz tutaj");
       remove(_baseHitbox);
       add(_jumpHitbox);
       _isJumping = true;
@@ -148,7 +147,6 @@ class Player extends SpriteAnimationComponent
       animationTicker?.onComplete = () {
         _isAttacking = false;
         remove(_attackHitbox);
-        print("tutaj");
         add(_baseHitbox);
         _setRunAnimation();
       };
