@@ -4,7 +4,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
 
-enum EnemyType { bat, necro, wolf }
+enum EnemyType { bat, necro }
 
 class Enemy extends SpriteAnimationComponent
     with CollisionCallbacks, HasGameRef {
@@ -53,28 +53,6 @@ class Enemy extends SpriteAnimationComponent
             anchor: Anchor.center,
             position: Vector2(size[0] * 0.49, size[1] * 0.6),
             size: Vector2(size[0] * 0.25, size[1] * 0.55),
-          ),
-        );
-
-      case EnemyType.wolf:
-        spriteSheet = SpriteSheet(
-          image: await gameRef.images.load('game_images/enemy_wolf.png'),
-          srcSize: Vector2(32, 32),
-        );
-        SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
-          row: 2,
-          stepTime: 0.15,
-          from: 6,
-          to: 10,
-        );
-        animation = spriteAnimation;
-        size = Vector2(gameRef.size[0] * 0.15, gameRef.size[1] * 0.3);
-        position = Vector2(gameRef.size[0] - size[0], gameRef.size[1] * 0.7);
-        add(
-          RectangleHitbox(
-            anchor: Anchor.center,
-            position: Vector2(size[0] * 0.5, size[1] * 0.7),
-            size: Vector2(size[0] * 0.8, size[1] * 0.55),
           ),
         );
     }
