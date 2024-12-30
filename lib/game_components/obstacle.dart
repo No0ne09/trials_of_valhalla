@@ -7,7 +7,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
 
-class Wolf extends SpriteAnimationComponent
+class Obstacle extends SpriteAnimationComponent
     with HasGameRef, CollisionCallbacks {
   @override
   FutureOr<void> onLoad() async {

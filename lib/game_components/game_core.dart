@@ -9,13 +9,13 @@ import 'package:trials_of_valhalla/game_components/attack_button.dart';
 import 'package:trials_of_valhalla/game_components/enemy.dart';
 import 'package:trials_of_valhalla/game_components/jump_button.dart';
 import 'package:trials_of_valhalla/game_components/player.dart';
-import 'package:trials_of_valhalla/game_components/wolf.dart';
+import 'package:trials_of_valhalla/game_components/obstacle.dart';
 
 class GameCore extends FlameGame with HasCollisionDetection {
   late double _enemyTimerPeriod;
-  late double _wolfTimerPeriod;
+  late double _obstacleTimerPeriod;
   double _enemyTimer = 0;
-  double _wolfTimer = 0;
+  double _obstacleTimer = 0;
   @override
   FutureOr<void> onLoad() async {
     final parallaxBackground = await loadParallaxComponent(
@@ -50,12 +50,12 @@ class GameCore extends FlameGame with HasCollisionDetection {
   void update(double dt) {
     _enemyTimerPeriod = max(1.0, 1.0);
     _enemyTimer += dt;
-    _wolfTimerPeriod = max(2.0, 2.0);
-    _wolfTimer += dt;
-    if (_wolfTimer >= _wolfTimerPeriod) {
-      final wolf = Wolf();
-      _wolfTimer = 0;
-      add(wolf);
+    _obstacleTimerPeriod = max(2.0, 2.0);
+    _obstacleTimer += dt;
+    if (_obstacleTimer >= _obstacleTimerPeriod) {
+      final obstacle = Obstacle();
+      _obstacleTimer = 0;
+      add(obstacle);
     }
     if (_enemyTimer >= _enemyTimerPeriod) {
       final enemy = Enemy(type: EnemyType.bat);
