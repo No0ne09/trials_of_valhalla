@@ -41,9 +41,9 @@ class Enemy extends SpriteAnimationComponent
           srcSize: Vector2(160, 128),
         );
         SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
-          row: 2,
+          row: 4,
           stepTime: 0.15,
-          from: 5,
+          from: 0,
           to: 17,
         );
         animation = spriteAnimation;
@@ -52,8 +52,8 @@ class Enemy extends SpriteAnimationComponent
         add(
           RectangleHitbox(
             anchor: Anchor.center,
-            position: Vector2(size[0] * 0.49, size[1] * 0.6),
-            size: Vector2(size[0] * 0.25, size[1] * 0.55),
+            position: Vector2(size[0] * 0.49, size[1] * 0.7),
+            size: Vector2(size[0] * 0.25, size[1] * 0.4),
           ),
         );
     }
