@@ -158,10 +158,10 @@ class Player extends SpriteAnimationComponent
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (_isAttacking) {
-      if (other is Enemy) {
+      if (other is Enemy && !other.isDead) {
         other.onHit();
+        gameRef.score += 1;
       }
-      gameRef.score += 1;
     } else {}
     super.onCollision(intersectionPoints, other);
   }

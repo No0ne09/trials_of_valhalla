@@ -6,9 +6,10 @@ import 'dart:async';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
+import 'package:trials_of_valhalla/game_components/game_core.dart';
 
 class Obstacle extends SpriteAnimationComponent
-    with HasGameRef, CollisionCallbacks {
+    with HasGameRef<GameCore>, CollisionCallbacks {
   @override
   FutureOr<void> onLoad() async {
     final spriteSheet = SpriteSheet(
@@ -36,6 +37,7 @@ class Obstacle extends SpriteAnimationComponent
   void update(double dt) {
     x -= 2;
     if (x <= -size.x) {
+      gameRef.score += 1;
       removeFromParent();
     }
     super.update(dt);

@@ -1,4 +1,4 @@
-import 'dart:async';
+import 'dart:async' as async;
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
@@ -11,9 +11,9 @@ class Enemy extends SpriteAnimationComponent
   final EnemyType type;
 
   Enemy({required this.type});
-
+  bool isDead = false;
   @override
-  FutureOr<void> onLoad() async {
+  async.FutureOr<void> onLoad() async {
     final SpriteSheet spriteSheet;
     switch (type) {
       case EnemyType.bat:
@@ -71,6 +71,14 @@ class Enemy extends SpriteAnimationComponent
   }
 
   void onHit() {
+    isDead = true;
+    async.Timer.periodic(Duration(milliseconds: 50), (timer) {
+      opacity -= 0.2;
+      if (opacity <= 0) {
+        removeFromParent();
+        timer.cancel();
+      }
+    });
     print("hit");
   }
 }
