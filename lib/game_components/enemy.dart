@@ -68,7 +68,7 @@ class Enemy extends SpriteAnimationComponent
           to: 10,
         );
         animation = spriteAnimation;
-        size = Vector2(gameRef.size[0] * 0.15, gameRef.size[1] * 0.2);
+        size = Vector2(gameRef.size[0] * 0.15, gameRef.size[1] * 0.3);
         position = Vector2(gameRef.size[0] - size[0], gameRef.size[1] * 0.7);
         add(
           RectangleHitbox(
