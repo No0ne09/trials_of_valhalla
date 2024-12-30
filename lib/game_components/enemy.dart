@@ -14,6 +14,7 @@ class Enemy extends SpriteAnimationComponent
   bool isDead = false;
   @override
   async.FutureOr<void> onLoad() async {
+    final startX = gameRef.size[0] + size[0];
     final SpriteSheet spriteSheet;
     switch (type) {
       case EnemyType.bat:
@@ -25,7 +26,7 @@ class Enemy extends SpriteAnimationComponent
             spriteSheet.createAnimation(row: 0, stepTime: 0.07, from: 0, to: 9);
         animation = spriteAnimation;
         size = Vector2(gameRef.size[1] * 0.25, gameRef.size[1] * 0.25);
-        position = Vector2(gameRef.size[0] - size[0], gameRef.size[1] * 0.33);
+        position = Vector2(startX, gameRef.size[1] * 0.33);
         add(
           RectangleHitbox(
             anchor: Anchor.center,
@@ -47,7 +48,7 @@ class Enemy extends SpriteAnimationComponent
         );
         animation = spriteAnimation;
         size = Vector2(gameRef.size[0] / 1.5, gameRef.size[1] / 1.25);
-        position = Vector2(gameRef.size[0] - size[0], gameRef.size[1] / 5);
+        position = Vector2(startX, gameRef.size[1] / 5);
         add(
           RectangleHitbox(
             anchor: Anchor.center,
