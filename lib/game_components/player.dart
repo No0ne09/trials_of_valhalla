@@ -22,8 +22,6 @@ class Player extends SpriteAnimationComponent
 
   @override
   Future<void> onLoad() async {
-    super.onLoad();
-
     playerImage = await gameRef.images.load(characterPath);
     _setRunAnimation();
     size = Vector2(gameRef.size[1] / 2, gameRef.size[1] / 2);
@@ -66,6 +64,7 @@ class Player extends SpriteAnimationComponent
         size[1] * 0.52,
       ),
     );
+    return super.onLoad();
   }
 
   @override

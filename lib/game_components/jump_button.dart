@@ -9,13 +9,13 @@ class JumpButton extends PositionComponent with TapCallbacks, HasGameRef {
   JumpButton(this.player);
   @override
   Future<void> onLoad() async {
-    super.onLoad();
     size = Vector2(50, 50);
     position = Vector2(0, gameRef.size[1] - 50);
     add(RectangleComponent(
       size: size,
       paint: Paint()..color = Colors.blue,
     ));
+    return super.onLoad();
   }
 
   @override
