@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:math';
-
+import 'package:flutter/material.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 
@@ -10,15 +10,30 @@ import 'package:trials_of_valhalla/game_components/enemy.dart';
 import 'package:trials_of_valhalla/game_components/jump_button.dart';
 import 'package:trials_of_valhalla/game_components/player.dart';
 import 'package:trials_of_valhalla/game_components/obstacle.dart';
+import 'package:trials_of_valhalla/helpers/theme.dart';
 
 class GameCore extends FlameGame with HasCollisionDetection {
   late double _enemyTimerPeriod;
   late double _obstacleTimerPeriod;
   double _enemyTimer = 0;
   double _obstacleTimer = 0;
+  int _score = 0;
+  late TextComponent _scoreComponent;
   final _random = Random();
   @override
   FutureOr<void> onLoad() async {
+    _scoreComponent = TextComponent(
+      text: _score.toString(),
+      position: Vector2(size.x / 2, 10),
+      anchor: Anchor.topCenter,
+      textRenderer: TextPaint(
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 36,
+          fontFamily: defaultFontFamily,
+        ),
+      ),
+    );
     final parallaxBackground = await loadParallaxComponent(
       [
         ParallaxImageData('parallax/1.png'),
@@ -44,11 +59,14 @@ class GameCore extends FlameGame with HasCollisionDetection {
     add(parallaxBackground2);
     add(JumpButton(player));
     add(AttackButton(player));
+    add(_scoreComponent);
     return super.onLoad();
   }
 
   @override
   void update(double dt) {
+    _score += 1;
+    _scoreComponent.text = _score.toString();
     _enemyTimerPeriod = max(1.0, 1.0);
     _enemyTimer += dt;
     _obstacleTimerPeriod = max(2.0, 2.0);
