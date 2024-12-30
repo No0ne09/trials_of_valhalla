@@ -6,6 +6,7 @@ import 'package:flame/sprite.dart';
 
 class Enemy extends SpriteAnimationComponent
     with CollisionCallbacks, HasGameRef {
+  /*
   @override
   FutureOr<void> onLoad() async {
     SpriteSheet spriteSheet = SpriteSheet(
@@ -21,6 +22,30 @@ class Enemy extends SpriteAnimationComponent
         anchor: Anchor.center,
         position: Vector2(size[0] / 2, size[1] * 0.55),
         size: Vector2(size[0] * 0.52, size[1] * 0.51)));
+    debugMode = true;
+    return super.onLoad();
+  }*/
+
+  @override
+  FutureOr<void> onLoad() async {
+    SpriteSheet spriteSheet = SpriteSheet(
+      image: await gameRef.images.load('game_images/enemy_necro.png'),
+      srcSize: Vector2(160, 128),
+    );
+    SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
+      row: 2,
+      stepTime: 0.15,
+      from: 5,
+      to: 17,
+    );
+    animation = spriteAnimation;
+    size = Vector2(gameRef.size[0] / 1.5, gameRef.size[1] / 1.25);
+    position = Vector2(gameRef.size[0] - size[0], gameRef.size[1] / 5);
+    add(RectangleHitbox(
+        anchor: Anchor.center,
+        position: Vector2(size[0] * 0.49, size[1] * 0.6),
+        size: Vector2(size[0] * 0.25, size[1] * 0.55)));
+
     debugMode = true;
     return super.onLoad();
   }
