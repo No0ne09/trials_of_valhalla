@@ -65,12 +65,11 @@ class GameCore extends FlameGame with HasCollisionDetection {
 
   @override
   void update(double dt) {
-    score += 1;
     _scoreComponent.text = score.toString();
     _enemyTimerPeriod = max(1.0, 4.0 - score * 0.05);
     _enemyTimer += dt;
     _obstacleTimerPeriod = max(5.2, 9.0 - score * 0.08);
-    print("$_enemyTimerPeriod $_obstacleTimerPeriod");
+
     _obstacleTimer += dt;
     if (_obstacleTimer >= _obstacleTimerPeriod) {
       final obstacle = Obstacle();
