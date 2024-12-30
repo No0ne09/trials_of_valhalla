@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
+
 import 'package:trials_of_valhalla/helpers/consts.dart';
 
 class Player extends SpriteAnimationComponent
@@ -12,6 +15,7 @@ class Player extends SpriteAnimationComponent
   late double _gravity;
   late double _jumpStrength;
   late double _baseY;
+  late final Image playerImage;
   late final RectangleHitbox _baseHitbox;
   late final RectangleHitbox _jumpHitbox;
   late final RectangleHitbox _attackHitbox;
@@ -19,8 +23,9 @@ class Player extends SpriteAnimationComponent
   @override
   Future<void> onLoad() async {
     super.onLoad();
-    await _setRunAnimation();
 
+    playerImage = await gameRef.images.load(characterPath);
+    _setRunAnimation();
     size = Vector2(gameRef.size[1] / 2, gameRef.size[1] / 2);
     position = Vector2(0, gameRef.size[1] - size[1]);
 
@@ -66,15 +71,15 @@ class Player extends SpriteAnimationComponent
   @override
   void update(double dt) async {
     super.update(dt);
-    //resetting y for rare cases when jump is ending too
-    if (y >= _baseY) {
+    //resetting y for rare cases when jump is ending too late and player ends under the map
+    if (y > _baseY) {
       y = _baseY;
     }
     //if player _isJumping then its y is changing as long as it's higher or equal base y position
     if (_isJumping) {
       y += _movement;
       _movement += _gravity;
-      //this check is needed for rare cases when attack and jump are ending at the same time and bad things are happening
+      //this check is needed for rare cases when attack and jump are ending at the same time and bad things are happening with hitbox managing
       if (!_isAttacking) {
         if (y >= _baseY) {
           _isJumping = false;
@@ -83,15 +88,15 @@ class Player extends SpriteAnimationComponent
           add(_jumpHitbox);
           remove(_jumpHitbox);
           add(_baseHitbox);
-          await _setRunAnimation();
+          _setRunAnimation();
         }
       }
     }
   }
 
-  Future<void> _setRunAnimation() async {
+  void _setRunAnimation() {
     SpriteSheet spriteSheet = SpriteSheet(
-      image: await gameRef.images.load(characterPath),
+      image: playerImage,
       srcSize: Vector2(115, 84),
     );
     SpriteAnimation spriteAnimation =
@@ -99,7 +104,7 @@ class Player extends SpriteAnimationComponent
     animation = spriteAnimation;
   }
 
-  void jump() async {
+  void jump() {
     if (!_isJumping) {
       if (_isAttacking) {
         animationTicker?.setToLast();
@@ -110,17 +115,16 @@ class Player extends SpriteAnimationComponent
       _isJumping = true;
       _movement = -_jumpStrength;
       SpriteSheet spriteSheet = SpriteSheet(
-        image: await gameRef.images.load(characterPath),
+        image: playerImage,
         srcSize: Vector2(115, 84),
       );
       SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
           row: 19, stepTime: 0.3, from: 0, to: 4, loop: false);
-
       animation = spriteAnimation;
     }
   }
 
-  Future<void> attack() async {
+  void attack() {
     if (!_isAttacking) {
       if (_isJumping && !_jumpAttack) {
         remove(_jumpHitbox);
@@ -130,7 +134,7 @@ class Player extends SpriteAnimationComponent
       }
       add(_attackHitbox);
       SpriteSheet spriteSheet = SpriteSheet(
-        image: await gameRef.images.load(characterPath),
+        image: playerImage,
         srcSize: Vector2(115, 84),
       );
       SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
@@ -142,12 +146,12 @@ class Player extends SpriteAnimationComponent
       );
       animation = spriteAnimation;
       _isAttacking = true;
-      animationTicker?.onComplete = () async {
+      animationTicker?.onComplete = () {
         _isAttacking = false;
         remove(_attackHitbox);
         print("tutaj");
         add(_baseHitbox);
-        await _setRunAnimation();
+        _setRunAnimation();
       };
     }
   }
