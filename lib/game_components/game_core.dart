@@ -138,7 +138,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
   }
 
   void closeGame() {
-    _detector.pauseListening();
+    if (shake) _detector.pauseListening();
     pauseEngine();
     FlameAudio.bgm.stop();
   }
