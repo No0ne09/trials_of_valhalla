@@ -1,7 +1,9 @@
 import 'package:audiofilereader/audiofileplayer.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:trials_of_valhalla/game_components/game_core.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
+import 'package:trials_of_valhalla/screens/game_screen.dart';
 import 'package:trials_of_valhalla/widgets/popups/info_popup.dart';
 
 Future<void> handleFirebaseError(String code, BuildContext context) async {
@@ -52,4 +54,20 @@ void playSFX(String path) {
   Audio.load(path)
     ..play()
     ..dispose();
+}
+
+void restartGame(GameCore game, BuildContext context) {
+  game.closeGame();
+  if (!context.mounted) return;
+  Navigator.pop(context);
+  Navigator.of(context).pushReplacement(MaterialPageRoute(
+    builder: (context) => const GameScreen(),
+  ));
+}
+
+void endGame(GameCore game, BuildContext context) {
+  game.closeGame();
+  if (!context.mounted) return;
+  Navigator.pop(context);
+  Navigator.pop(context);
 }

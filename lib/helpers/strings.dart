@@ -28,3 +28,7 @@ const playMusic = "Play background music";
 const playSfx = "Play sound effects";
 const noConnectionPopUpInfo =
     "You are using offline mode, some of the functions may not work properly.";
+
+const resume = "Resume";
+const exit = "Exit";
+const tryAgain = "Try again";

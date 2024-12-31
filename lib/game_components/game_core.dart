@@ -34,10 +34,11 @@ class GameCore extends FlameGame with HasCollisionDetection {
   @override
   FutureOr<void> onLoad() async {
     Flame.device.fullScreen();
+    FlameAudio.bgm.initialize();
     if (music) {
-      FlameAudio.bgm.initialize();
       FlameAudio.bgm.play("background/bg_music_${_random.nextInt(3) + 1}.mp3");
     }
+
     _scoreComponent = TextComponent(
       text: score.toString(),
       position: Vector2(size.x / 2, 10),
@@ -83,13 +84,13 @@ class GameCore extends FlameGame with HasCollisionDetection {
   @override
   void update(double dt) {
     _scoreComponent.text = score.toString();
-    _enemyTimerPeriod = max(1, 5.0 - score * 0.04);
+    _enemyTimerPeriod = max(0.8, 5.0 - score * 0.05);
     _enemyTimer += dt;
-    _obstacleTimerPeriod = max(3.5, 10.0 - score * 0.065);
+    _obstacleTimerPeriod = max(3, 10.0 - score * 0.07);
     _obstacleTimer += dt;
     if (_obstacleTimer >= _obstacleTimerPeriod) {
       final obstacle = Obstacle(
-        speed: 3 + min(4.0, score * 0.08),
+        speed: 3 + min(4.4, score * 0.1),
       );
       _obstacleTimer = 0;
       add(obstacle);
@@ -97,7 +98,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
     if (_enemyTimer >= _enemyTimerPeriod) {
       final enemy = Enemy(
         type: EnemyType.values[_random.nextInt(EnemyType.values.length)],
-        speed: 2 + min(3.0, score * 0.05),
+        speed: 2 + min(3.5, score * 0.07),
         positionModifier: _random.nextDouble() * size[0] / 3,
         sfx: sfx,
       );
