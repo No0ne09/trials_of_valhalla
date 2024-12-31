@@ -7,6 +7,8 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 
 import 'package:flame/parallax.dart';
+import 'package:shake_detector/shake_detector.dart';
+
 import 'package:trials_of_valhalla/game_components/enemy.dart';
 import 'package:trials_of_valhalla/game_components/game_button_component.dart';
 import 'package:trials_of_valhalla/game_components/player.dart';
@@ -34,11 +36,20 @@ class GameCore extends FlameGame with HasCollisionDetection {
   @override
   FutureOr<void> onLoad() async {
     Flame.device.fullScreen();
+    Flame.device.setPortraitUpOnly();
     FlameAudio.bgm.initialize();
     if (music) {
       FlameAudio.bgm.play("background/bg_music_${_random.nextInt(3) + 1}.mp3");
     }
-
+    final player = Player(sfx: sfx);
+    if (shake) {
+      ShakeDetector.autoStart(
+          onShake: () {
+            player.attack();
+          },
+          shakeThresholdGravity: 1.1);
+    }
+    print(size);
     _scoreComponent = TextComponent(
       text: score.toString(),
       position: Vector2(size.x / 2, size.y - 50),
@@ -51,29 +62,28 @@ class GameCore extends FlameGame with HasCollisionDetection {
         ),
       ),
     );
-    final parallaxBackground = await loadParallaxComponent(
-      [
-        ParallaxImageData('parallax/1.png'),
-        ParallaxImageData('parallax/2.png'),
-        ParallaxImageData('parallax/3.png'),
-        ParallaxImageData('parallax/4.png'),
-      ],
-      baseVelocity: Vector2(10, 0),
-      velocityMultiplierDelta: Vector2(1.4, 0),
+    add(
+      await loadParallaxComponent(
+        [
+          ParallaxImageData('parallax/1.png'),
+          ParallaxImageData('parallax/2.png'),
+          ParallaxImageData('parallax/3.png'),
+          ParallaxImageData('parallax/4.png'),
+        ],
+        baseVelocity: Vector2(10, 0),
+        velocityMultiplierDelta: Vector2(1.4, 0),
+      ),
     );
-    add(parallaxBackground);
-    final player = Player(sfx: sfx);
-
     add(player);
-
-    final parallaxBackground2 = await loadParallaxComponent(
-      [
-        ParallaxImageData('parallax/5.png'),
-      ],
-      baseVelocity: Vector2(10, 0),
-      velocityMultiplierDelta: Vector2(1, 0),
+    add(
+      await loadParallaxComponent(
+        [
+          ParallaxImageData('parallax/5.png'),
+        ],
+        baseVelocity: Vector2(10, 0),
+        velocityMultiplierDelta: Vector2(1, 0),
+      ),
     );
-    add(parallaxBackground2);
     add(
       GameButtonComponent(
         onTap: player.jump,
@@ -102,6 +112,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
 
   @override
   void update(double dt) {
+    score = 100;
     _scoreComponent.text = score.toString();
     _enemyTimerPeriod = max(0.8, 5.0 - score * 0.05);
     _enemyTimer += dt;

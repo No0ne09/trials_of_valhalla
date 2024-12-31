@@ -19,6 +19,9 @@ class GameScreen extends ConsumerWidget {
             overlayBuilderMap: {
               "PauseButton": (context, GameCore game) =>
                   PauseButton(game: game),
+              "GameOver": (context, GameCore game) {
+                return Placeholder();
+              },
             },
             game: GameCore(
               sfx: sfx,
