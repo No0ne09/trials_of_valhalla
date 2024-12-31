@@ -10,16 +10,18 @@ class Enemy extends SpriteAnimationComponent
     with CollisionCallbacks, HasGameRef {
   final EnemyType type;
   final double speed;
+  final double positionModifier;
 
   Enemy({
     required this.type,
     required this.speed,
+    required this.positionModifier,
   });
   bool isDead = false;
   @override
   async.FutureOr<void> onLoad() async {
-    print(speed);
-    final startX = gameRef.size[0] + size[0];
+    final startX = gameRef.size[0] + size[0] + positionModifier;
+    print(startX);
     final SpriteSheet spriteSheet;
     switch (type) {
       case EnemyType.bat:

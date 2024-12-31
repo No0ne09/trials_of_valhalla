@@ -67,11 +67,11 @@ class GameCore extends FlameGame with HasCollisionDetection {
 
   @override
   void update(double dt) {
+    score = 100;
     _scoreComponent.text = score.toString();
-    _enemyTimerPeriod = max(0.9, 4.0 - score * 0.05);
+    _enemyTimerPeriod = max(1, 5.0 - score * 0.04);
     _enemyTimer += dt;
-    _obstacleTimerPeriod = max(3.5, 9.0 - score * 0.08);
-
+    _obstacleTimerPeriod = max(3.5, 10.0 - score * 0.065);
     _obstacleTimer += dt;
     if (_obstacleTimer >= _obstacleTimerPeriod) {
       final obstacle = Obstacle(
@@ -82,8 +82,10 @@ class GameCore extends FlameGame with HasCollisionDetection {
     }
     if (_enemyTimer >= _enemyTimerPeriod) {
       final enemy = Enemy(
-          type: EnemyType.values[_random.nextInt(EnemyType.values.length)],
-          speed: 2 + min(3.0, score * 0.05));
+        type: EnemyType.values[_random.nextInt(EnemyType.values.length)],
+        speed: 2 + min(3.0, score * 0.05),
+        positionModifier: _random.nextDouble() * size[0] / 3,
+      );
       _enemyTimer = 0;
       add(enemy);
     }
