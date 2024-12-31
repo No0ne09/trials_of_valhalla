@@ -78,6 +78,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
     add(AttackButton(player));
     add(_scoreComponent);
     overlays.add("PauseButton");
+    // add(FpsTextComponent(position: Vector2(0, 0)));
     return super.onLoad();
   }
 
@@ -100,7 +101,6 @@ class GameCore extends FlameGame with HasCollisionDetection {
         type: EnemyType.values[_random.nextInt(EnemyType.values.length)],
         speed: 2 + min(3.5, score * 0.07),
         positionModifier: _random.nextDouble() * size[0] / 3,
-        sfx: sfx,
       );
       _enemyTimer = 0;
       add(enemy);

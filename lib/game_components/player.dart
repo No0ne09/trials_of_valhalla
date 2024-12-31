@@ -152,6 +152,7 @@ class Player extends SpriteAnimationComponent
       } else if (_isAttacking) {
         other.onHit();
         gameRef.score += 1;
+        if (sfx) playSFX(enemyDeathPath);
       } else {
         //  print("collision with ${other.runtimeType}");
       }

@@ -3,8 +3,6 @@ import 'dart:async' as async;
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
-import 'package:trials_of_valhalla/helpers/consts.dart';
-import 'package:trials_of_valhalla/helpers/functions.dart';
 
 enum EnemyType { bat, necro }
 
@@ -13,13 +11,11 @@ class Enemy extends SpriteAnimationComponent
   final EnemyType type;
   final double speed;
   final double positionModifier;
-  final bool sfx;
 
   Enemy({
     required this.type,
     required this.speed,
     required this.positionModifier,
-    required this.sfx,
   });
   bool isDead = false;
   @override
@@ -82,7 +78,6 @@ class Enemy extends SpriteAnimationComponent
   }
 
   void onHit() {
-    if (sfx) playSFX(enemyDeathPath);
     isDead = true;
     async.Timer.periodic(const Duration(milliseconds: 50), (timer) {
       double tempOpacity = opacity - 0.15;
