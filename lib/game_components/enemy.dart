@@ -9,11 +9,16 @@ enum EnemyType { bat, necro }
 class Enemy extends SpriteAnimationComponent
     with CollisionCallbacks, HasGameRef {
   final EnemyType type;
+  final double speed;
 
-  Enemy({required this.type});
+  Enemy({
+    required this.type,
+    required this.speed,
+  });
   bool isDead = false;
   @override
   async.FutureOr<void> onLoad() async {
+    print(speed);
     final startX = gameRef.size[0] + size[0];
     final SpriteSheet spriteSheet;
     switch (type) {
@@ -64,7 +69,7 @@ class Enemy extends SpriteAnimationComponent
 
   @override
   void update(double dt) {
-    x -= 2;
+    x -= speed;
     if (x <= -size.x) {
       removeFromParent();
     }

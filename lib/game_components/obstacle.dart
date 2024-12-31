@@ -10,6 +10,8 @@ import 'package:trials_of_valhalla/game_components/game_core.dart';
 
 class Obstacle extends SpriteAnimationComponent
     with HasGameRef<GameCore>, CollisionCallbacks {
+  final double speed;
+  Obstacle({required this.speed});
   @override
   FutureOr<void> onLoad() async {
     final spriteSheet = SpriteSheet(
@@ -36,7 +38,7 @@ class Obstacle extends SpriteAnimationComponent
 
   @override
   void update(double dt) {
-    x -= 2;
+    x -= speed;
     if (x <= -size.x) {
       gameRef.score += 1;
       removeFromParent();
