@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trials_of_valhalla/helpers/consts.dart';
+import 'package:trials_of_valhalla/helpers/functions.dart';
+import 'package:trials_of_valhalla/helpers/providers.dart';
 import 'package:trials_of_valhalla/helpers/theme.dart';
 
-class MainButton extends StatelessWidget {
+class MainButton extends ConsumerWidget {
   const MainButton({
     required this.text,
     required this.onPressed,
@@ -13,12 +17,18 @@ class MainButton extends StatelessWidget {
   final void Function() onPressed;
   final Icon? icon;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
           backgroundColor: const Color.fromRGBO(150, 0, 0, 1),
           foregroundColor: Colors.white),
-      onPressed: onPressed,
+      onPressed: () {
+        final audio = ref.read(sfxProvider);
+        if (audio) {
+          playSFX(buttonSFXPath);
+        }
+        onPressed();
+      },
       icon: icon,
       iconAlignment: IconAlignment.end,
       label: Row(

@@ -21,7 +21,6 @@ class Enemy extends SpriteAnimationComponent
   @override
   async.FutureOr<void> onLoad() async {
     final startX = gameRef.size[0] + size[0] + positionModifier;
-    print(startX);
     final SpriteSheet spriteSheet;
     switch (type) {
       case EnemyType.bat:

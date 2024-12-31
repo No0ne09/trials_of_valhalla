@@ -1,3 +1,4 @@
+import 'package:audiofilereader/audiofileplayer.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
@@ -45,4 +46,10 @@ Future<bool> checkConnection() async {
     return true;
   }
   return false;
+}
+
+void playSFX(String path) {
+  Audio.load(path)
+    ..play()
+    ..dispose();
 }
