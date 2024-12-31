@@ -15,7 +15,7 @@ class Obstacle extends SpriteAnimationComponent
   @override
   FutureOr<void> onLoad() async {
     final spriteSheet = SpriteSheet(
-      image: await gameRef.images.load('game_images/enemy_wolf.png'),
+      image: await gameRef.images.load('game_images/obstacle_wolf.png'),
       srcSize: Vector2(48, 32),
     );
     SpriteAnimation spriteAnimation = spriteSheet.createAnimation(

@@ -4,7 +4,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
 
-enum EnemyType { bat, necro }
+enum EnemyType { bat, necro, draugr }
 
 class Enemy extends SpriteAnimationComponent
     with CollisionCallbacks, HasGameRef {
@@ -28,10 +28,17 @@ class Enemy extends SpriteAnimationComponent
           image: await gameRef.images.load('game_images/enemy_bat.png'),
           srcSize: Vector2(64, 64),
         );
-        SpriteAnimation spriteAnimation =
-            spriteSheet.createAnimation(row: 0, stepTime: 0.07, from: 0, to: 9);
+        SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
+          row: 0,
+          stepTime: 0.07,
+          from: 0,
+          to: 9,
+        );
         animation = spriteAnimation;
-        size = Vector2(gameRef.size[1] * 0.25, gameRef.size[1] * 0.25);
+        size = Vector2(
+          gameRef.size[1] * 0.25,
+          gameRef.size[1] * 0.25,
+        );
         position = Vector2(startX, gameRef.size[1] * 0.33);
         add(
           RectangleHitbox(
@@ -60,6 +67,28 @@ class Enemy extends SpriteAnimationComponent
             anchor: Anchor.center,
             position: Vector2(size[0] * 0.49, size[1] * 0.7),
             size: Vector2(size[0] * 0.25, size[1] * 0.4),
+          ),
+        );
+      case EnemyType.draugr:
+        spriteSheet = SpriteSheet(
+          image: await gameRef.images.load('game_images/enemy_draugr.png'),
+          srcSize: Vector2(80, 80),
+        );
+        SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
+          row: 1,
+          stepTime: 0.2,
+          from: 17,
+          to: 23,
+        );
+        animation = spriteAnimation;
+        size = Vector2(gameRef.size[0] / 3, gameRef.size[1] / 2);
+        position = Vector2(startX, gameRef.size[1] * 0.5);
+
+        add(
+          RectangleHitbox(
+            anchor: Anchor.center,
+            size: Vector2(size[0] * 0.47, size[1] * 0.3),
+            position: Vector2(size[0] * 0.55, size[1] * 0.6),
           ),
         );
     }
