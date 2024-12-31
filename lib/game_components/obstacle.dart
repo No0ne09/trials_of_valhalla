@@ -16,22 +16,24 @@ class Obstacle extends SpriteAnimationComponent
   FutureOr<void> onLoad() async {
     final spriteSheet = SpriteSheet(
       image: await gameRef.images.load('game_images/enemy_wolf.png'),
-      srcSize: Vector2(32, 32),
+      srcSize: Vector2(48, 32),
     );
     SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
-      row: 2,
+      row: 0,
       stepTime: 0.15,
-      from: 6,
-      to: 10,
+      from: 1,
+      to: 6,
     );
     animation = spriteAnimation;
-    size = Vector2(gameRef.size[0] * 0.12, gameRef.size[1] * 0.25);
-    position = Vector2(gameRef.size[0], gameRef.size[1] * 0.7);
-    add(RectangleHitbox(
-      anchor: Anchor.center,
-      position: Vector2(size[0] * 0.5, size[1] * 0.7),
-      size: Vector2(size[0] * 0.8, size[1] * 0.55),
-    ));
+    size = Vector2(gameRef.size[0] * 0.18, gameRef.size[1] * 0.18);
+    position = Vector2(gameRef.size[0], gameRef.size[1] * 0.75);
+    add(
+      RectangleHitbox(
+        anchor: Anchor.center,
+        position: Vector2(size[0] * 0.51, size[1] * 0.65),
+        size: Vector2(size[0] * 0.92, size[1] * 0.65),
+      ),
+    );
     debugMode = true;
     return super.onLoad();
   }
