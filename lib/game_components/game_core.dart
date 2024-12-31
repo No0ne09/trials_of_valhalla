@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
@@ -22,6 +23,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
   final _random = Random();
   @override
   FutureOr<void> onLoad() async {
+    Flame.device.fullScreen();
     _scoreComponent = TextComponent(
       text: score.toString(),
       position: Vector2(size.x / 2, 10),
