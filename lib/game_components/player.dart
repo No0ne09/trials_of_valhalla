@@ -126,14 +126,13 @@ class Player extends SpriteAnimationComponent
 
   void attack() {
     if (!_isAttacking) {
+      add(_attackHitbox);
       _isAttacking = true;
       if (_isJumping && !_jumpAttack) {
         remove(_jumpHitbox);
         _jumpAttack = true;
-      } else {
-        remove(_baseHitbox);
       }
-      add(_attackHitbox);
+
       SpriteSheet spriteSheet = SpriteSheet(
         image: playerImage,
         srcSize: Vector2(115, 84),
