@@ -21,7 +21,9 @@ class MainButton extends ConsumerWidget {
     return ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
           backgroundColor: const Color.fromRGBO(150, 0, 0, 1),
-          foregroundColor: Colors.white),
+          foregroundColor: Colors.white,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
       onPressed: () {
         final audio = ref.read(sfxProvider);
         if (audio) playSFX(buttonSFXPath);
