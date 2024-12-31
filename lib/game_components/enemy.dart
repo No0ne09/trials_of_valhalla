@@ -3,6 +3,7 @@ import 'dart:async' as async;
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
+import 'package:trials_of_valhalla/helpers/consts.dart';
 
 enum EnemyType { bat, necro, draugr }
 
@@ -25,7 +26,7 @@ class Enemy extends SpriteAnimationComponent
     switch (type) {
       case EnemyType.bat:
         spriteSheet = SpriteSheet(
-          image: await gameRef.images.load('game_images/enemy_bat.png'),
+          image: await gameRef.images.load(enemyBatPath),
           srcSize: Vector2(64, 64),
         );
         SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
@@ -50,7 +51,7 @@ class Enemy extends SpriteAnimationComponent
 
       case EnemyType.necro:
         spriteSheet = SpriteSheet(
-          image: await gameRef.images.load('game_images/enemy_necro.png'),
+          image: await gameRef.images.load(enemyNecroPath),
           srcSize: Vector2(160, 128),
         );
         SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
@@ -71,7 +72,7 @@ class Enemy extends SpriteAnimationComponent
         );
       case EnemyType.draugr:
         spriteSheet = SpriteSheet(
-          image: await gameRef.images.load('game_images/enemy_draugr.png'),
+          image: await gameRef.images.load(enemyDraugrPath),
           srcSize: Vector2(80, 80),
         );
         SpriteAnimation spriteAnimation = spriteSheet.createAnimation(

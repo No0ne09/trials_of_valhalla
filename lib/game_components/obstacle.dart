@@ -7,6 +7,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
 import 'package:trials_of_valhalla/game_components/game_core.dart';
+import 'package:trials_of_valhalla/helpers/consts.dart';
 
 class Obstacle extends SpriteAnimationComponent
     with HasGameRef<GameCore>, CollisionCallbacks {
@@ -15,7 +16,7 @@ class Obstacle extends SpriteAnimationComponent
   @override
   FutureOr<void> onLoad() async {
     final spriteSheet = SpriteSheet(
-      image: await gameRef.images.load('game_images/obstacle_wolf.png'),
+      image: await gameRef.images.load(obstacleWolfPath),
       srcSize: Vector2(48, 32),
     );
     SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
