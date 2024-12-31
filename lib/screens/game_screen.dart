@@ -15,11 +15,11 @@ import 'package:trials_of_valhalla/widgets/popups/game_overaly_popup.dart';
 class GameScreen extends ConsumerWidget {
   const GameScreen({super.key});
 
-  void _handleGameOver(GameCore game, BuildContext context) {
+  void _uploadScore(int score, BuildContext context) {
     try {
       FirebaseFirestore.instance.collection("high_scores").doc(uuid.v4()).set({
         "user": FirebaseAuth.instance.currentUser!.email,
-        "score": game.score,
+        "score": score,
       });
     } on FirebaseException catch (e) {
       if (context.mounted) return;
@@ -44,9 +44,8 @@ class GameScreen extends ConsumerWidget {
               "PauseButton": (context, GameCore game) =>
                   PauseButton(game: game),
               "GameOver": (context, GameCore game) {
-                _handleGameOver(game, context);
+                if (game.score > 0) _uploadScore(game.score, context);
                 game.closeGame();
-
                 return ComplexScreenBase(
                   title: "gameover",
                   divider: 1,
