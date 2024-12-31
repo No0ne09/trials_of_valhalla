@@ -8,7 +8,7 @@ import 'package:flame/game.dart';
 
 import 'package:flame/parallax.dart';
 import 'package:trials_of_valhalla/game_components/enemy.dart';
-import 'package:trials_of_valhalla/game_components/game_button.dart';
+import 'package:trials_of_valhalla/game_components/game_button_component.dart';
 import 'package:trials_of_valhalla/game_components/player.dart';
 import 'package:trials_of_valhalla/game_components/obstacle.dart';
 import 'package:trials_of_valhalla/helpers/theme.dart';
@@ -74,7 +74,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
     );
     add(parallaxBackground2);
     add(
-      GameButton(
+      GameButtonComponent(
         color: Colors.white,
         onTap: player.jump,
         buttonPosition: Vector2(
@@ -85,7 +85,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
     );
     print(size[1]);
     add(
-      GameButton(
+      GameButtonComponent(
         color: accentColor,
         onTap: player.attack,
         buttonPosition: Vector2(

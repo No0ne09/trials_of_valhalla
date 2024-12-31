@@ -2,11 +2,12 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flutter/material.dart';
 
-class GameButton extends SpriteComponent with TapCallbacks, HasGameRef {
+class GameButtonComponent extends SpriteComponent
+    with TapCallbacks, HasGameRef {
   final Vector2 buttonPosition;
   final Color color;
   final void Function() onTap;
-  GameButton({
+  GameButtonComponent({
     required this.buttonPosition,
     required this.color,
     required this.onTap,
