@@ -36,7 +36,7 @@ class Player extends SpriteAnimationComponent
         row: 19, stepTime: 0.3, from: 0, to: 4, loop: false);
     _attackAnimation = spriteSheet.createAnimation(
       row: 9,
-      stepTime: 0.08,
+      stepTime: 0.15,
       from: 0,
       to: 3,
       loop: false,
