@@ -14,6 +14,15 @@ import 'package:trials_of_valhalla/game_components/obstacle.dart';
 import 'package:trials_of_valhalla/helpers/theme.dart';
 
 class GameCore extends FlameGame with HasCollisionDetection {
+  final bool sfx;
+  final bool music;
+  final bool shake;
+  GameCore({
+    required this.sfx,
+    required this.music,
+    required this.shake,
+  });
+
   late double _enemyTimerPeriod;
   late double _obstacleTimerPeriod;
   double _enemyTimer = 0;
@@ -47,7 +56,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
       velocityMultiplierDelta: Vector2(1.4, 0),
     );
     add(parallaxBackground);
-    final player = Player();
+    final player = Player(sfx: sfx);
 
     add(player);
 
@@ -67,7 +76,6 @@ class GameCore extends FlameGame with HasCollisionDetection {
 
   @override
   void update(double dt) {
-    score = 100;
     _scoreComponent.text = score.toString();
     _enemyTimerPeriod = max(1, 5.0 - score * 0.04);
     _enemyTimer += dt;
@@ -85,6 +93,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
         type: EnemyType.values[_random.nextInt(EnemyType.values.length)],
         speed: 2 + min(3.0, score * 0.05),
         positionModifier: _random.nextDouble() * size[0] / 3,
+        sfx: sfx,
       );
       _enemyTimer = 0;
       add(enemy);

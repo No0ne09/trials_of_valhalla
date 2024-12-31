@@ -24,9 +24,7 @@ class MainButton extends ConsumerWidget {
           foregroundColor: Colors.white),
       onPressed: () {
         final audio = ref.read(sfxProvider);
-        if (audio) {
-          playSFX(buttonSFXPath);
-        }
+        if (audio) playSFX(buttonSFXPath);
         onPressed();
       },
       icon: icon,

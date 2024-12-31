@@ -7,9 +7,12 @@ import 'package:trials_of_valhalla/game_components/enemy.dart';
 import 'package:trials_of_valhalla/game_components/game_core.dart';
 
 import 'package:trials_of_valhalla/helpers/consts.dart';
+import 'package:trials_of_valhalla/helpers/functions.dart';
 
 class Player extends SpriteAnimationComponent
     with CollisionCallbacks, HasGameRef<GameCore> {
+  final bool sfx;
+  Player({required this.sfx});
   bool _isJumping = false;
   bool _isAttacking = false;
   bool _jumpAttack = false;
@@ -107,6 +110,7 @@ class Player extends SpriteAnimationComponent
 
   void jump() {
     if (!_isJumping) {
+      if (sfx) playSFX('assets/audio/jump.wav');
       if (_isAttacking) {
         animationTicker?.setToLast();
       }
@@ -126,6 +130,7 @@ class Player extends SpriteAnimationComponent
 
   void attack() {
     if (!_isAttacking) {
+      if (sfx) playSFX('assets/audio/attack.wav');
       add(_attackHitbox);
       _isAttacking = true;
       if (_isJumping && !_jumpAttack) {

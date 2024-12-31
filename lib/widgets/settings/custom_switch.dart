@@ -32,9 +32,8 @@ class CustomSwitch extends ConsumerWidget {
         inactiveThumbColor: Colors.black,
         onChanged: (value) {
           final audio = ref.read(sfxProvider);
-          if (audio) {
-            playSFX(buttonSFXPath);
-          }
+          if (audio) playSFX(buttonSFXPath);
+
           onChanged(value);
         },
       ),
