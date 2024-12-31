@@ -52,7 +52,7 @@ class Player extends SpriteAnimationComponent
         size[1] * 0.45,
       ),
     );
-    _jumpStrength = gameRef.size[0] / 110;
+    _jumpStrength = size[0] / 35;
     _gravity = _jumpStrength / 90;
     _baseY = gameRef.size[1] - size[1];
 

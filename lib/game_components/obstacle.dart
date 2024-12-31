@@ -23,8 +23,8 @@ class Obstacle extends SpriteAnimationComponent
       to: 10,
     );
     animation = spriteAnimation;
-    size = Vector2(gameRef.size[0] * 0.15, gameRef.size[1] * 0.3);
-    position = Vector2(gameRef.size[0], gameRef.size[1] * 0.6);
+    size = Vector2(gameRef.size[0] * 0.12, gameRef.size[1] * 0.25);
+    position = Vector2(gameRef.size[0], gameRef.size[1] * 0.7);
     add(RectangleHitbox(
       anchor: Anchor.center,
       position: Vector2(size[0] * 0.5, size[1] * 0.7),
