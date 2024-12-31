@@ -110,7 +110,7 @@ class Player extends SpriteAnimationComponent
 
   void jump() {
     if (!_isJumping) {
-      if (sfx) playSFX('assets/audio/jump.wav');
+      if (sfx) playSFX(jumpSfxPath);
       if (_isAttacking) {
         animationTicker?.setToLast();
       }
@@ -130,7 +130,7 @@ class Player extends SpriteAnimationComponent
 
   void attack() {
     if (!_isAttacking) {
-      if (sfx) playSFX('assets/audio/attack.wav');
+      if (sfx) playSFX(attackSfxPath);
       add(_attackHitbox);
       _isAttacking = true;
       if (_isJumping && !_jumpAttack) {

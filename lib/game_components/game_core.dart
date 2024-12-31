@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flame/flame.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
@@ -33,6 +34,10 @@ class GameCore extends FlameGame with HasCollisionDetection {
   @override
   FutureOr<void> onLoad() async {
     Flame.device.fullScreen();
+    if (music) {
+      FlameAudio.bgm.initialize();
+      FlameAudio.bgm.play("background/bg_music_${_random.nextInt(3)}.mp3");
+    }
     _scoreComponent = TextComponent(
       text: score.toString(),
       position: Vector2(size.x / 2, 10),

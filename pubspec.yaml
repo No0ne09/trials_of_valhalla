@@ -43,6 +43,7 @@ dependencies:
   connectivity_plus: ^6.1.1
   flame: ^1.22.0
   audiofilereader: ^2.1.3
+  flame_audio: ^2.10.6
 
 
 dev_dependencies:
@@ -73,7 +74,8 @@ flutter:
      - assets/images/
      - assets/images/parallax/
      - assets/images/game_images/
-     - assets/audio/
+     - assets/audio/sfx/
+     - assets/audio/background/
     
 
   #   - images/a_dot_ham.jpeg
