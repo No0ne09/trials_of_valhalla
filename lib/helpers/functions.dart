@@ -56,18 +56,18 @@ void playSFX(String path) {
     ..dispose();
 }
 
-void restartGame(GameCore game, BuildContext context) {
+void restartGame(GameCore game, BuildContext context, bool isGameOver) {
   game.closeGame();
   if (!context.mounted) return;
-  Navigator.pop(context);
+  if (!isGameOver) Navigator.pop(context);
   Navigator.of(context).pushReplacement(MaterialPageRoute(
     builder: (context) => const GameScreen(),
   ));
 }
 
-void endGame(GameCore game, BuildContext context) {
+void endGame(GameCore game, BuildContext context, bool isGameOver) {
   game.closeGame();
   if (!context.mounted) return;
-  Navigator.pop(context);
+  if (!isGameOver) Navigator.pop(context);
   Navigator.pop(context);
 }

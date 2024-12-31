@@ -32,6 +32,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
   double _obstacleTimer = 0;
   int score = 0;
   late TextComponent _scoreComponent;
+  late ShakeDetector _detector;
   final _random = Random();
   @override
   FutureOr<void> onLoad() async {
@@ -42,7 +43,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
     }
     final player = Player(sfx: sfx);
     if (shake) {
-      ShakeDetector.autoStart(
+      _detector = ShakeDetector.autoStart(
           onShake: () {
             player.attack();
           },
@@ -137,6 +138,8 @@ class GameCore extends FlameGame with HasCollisionDetection {
   }
 
   void closeGame() {
+    _detector.pauseListening();
+    pauseEngine();
     FlameAudio.bgm.stop();
   }
 }

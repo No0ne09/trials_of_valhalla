@@ -154,10 +154,10 @@ class Player extends SpriteAnimationComponent
         gameRef.score += 1;
         if (sfx) playSFX(enemyDeathSfxPath);
       } else {
-        //  print("collision with ${other.runtimeType}");
+        gameRef.overlays.add("GameOver");
       }
     } else {
-      // print("collision with ${other.runtimeType}");
+      gameRef.overlays.add("GameOver");
     }
     super.onCollision(intersectionPoints, other);
   }
