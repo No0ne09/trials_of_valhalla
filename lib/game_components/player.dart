@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
@@ -20,19 +18,34 @@ class Player extends SpriteAnimationComponent
   late double _gravity;
   late double _jumpStrength;
   late double _baseY;
-  late final Image playerImage;
-  late final RectangleHitbox _baseHitbox;
+  late final SpriteAnimation _runAnimation;
+  late final SpriteAnimation _jumpAnimation;
+  late final SpriteAnimation _attackAnimation;
+  late final RectangleHitbox _runHitbox;
   late final RectangleHitbox _jumpHitbox;
   late final RectangleHitbox _attackHitbox;
 
   @override
   Future<void> onLoad() async {
-    playerImage = await gameRef.images.load(characterPath);
-    _setRunAnimation();
+    final spriteSheet = SpriteSheet(
+      image: await gameRef.images.load(characterPath),
+      srcSize: Vector2(115, 84),
+    );
+    _runAnimation =
+        spriteSheet.createAnimation(row: 2, stepTime: 0.1, from: 1, to: 8);
+    _jumpAnimation = spriteSheet.createAnimation(
+        row: 19, stepTime: 0.3, from: 0, to: 4, loop: false);
+    _attackAnimation = spriteSheet.createAnimation(
+      row: 9,
+      stepTime: 0.08,
+      from: 0,
+      to: 3,
+      loop: false,
+    );
     size = Vector2(gameRef.size[1] / 2, gameRef.size[1] / 2);
     position = Vector2(0, gameRef.size[1] - size[1]);
-
-    _baseHitbox = RectangleHitbox(
+    animation = _runAnimation;
+    _runHitbox = RectangleHitbox(
       position: Vector2(
         size[0] * 0.35,
         size[1] * 0.33,
@@ -42,7 +55,7 @@ class Player extends SpriteAnimationComponent
         size[1] * 0.52,
       ),
     );
-    add(_baseHitbox);
+    add(_runHitbox);
     debugMode = true;
 
     _jumpHitbox = RectangleHitbox(
@@ -91,21 +104,11 @@ class Player extends SpriteAnimationComponent
           y = _baseY;
           add(_jumpHitbox);
           remove(_jumpHitbox);
-          add(_baseHitbox);
-          _setRunAnimation();
+          add(_runHitbox);
+          animation = _runAnimation;
         }
       }
     }
-  }
-
-  void _setRunAnimation() {
-    SpriteSheet spriteSheet = SpriteSheet(
-      image: playerImage,
-      srcSize: Vector2(115, 84),
-    );
-    SpriteAnimation spriteAnimation =
-        spriteSheet.createAnimation(row: 2, stepTime: 0.1, from: 1, to: 8);
-    animation = spriteAnimation;
   }
 
   void jump() {
@@ -114,17 +117,11 @@ class Player extends SpriteAnimationComponent
       if (_isAttacking) {
         animationTicker?.setToLast();
       }
-      remove(_baseHitbox);
+      remove(_runHitbox);
       add(_jumpHitbox);
       _isJumping = true;
       _movement = -_jumpStrength;
-      SpriteSheet spriteSheet = SpriteSheet(
-        image: playerImage,
-        srcSize: Vector2(115, 84),
-      );
-      SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
-          row: 19, stepTime: 0.3, from: 0, to: 4, loop: false);
-      animation = spriteAnimation;
+      animation = _jumpAnimation;
     }
   }
 
@@ -138,24 +135,13 @@ class Player extends SpriteAnimationComponent
         _jumpAttack = true;
       }
 
-      SpriteSheet spriteSheet = SpriteSheet(
-        image: playerImage,
-        srcSize: Vector2(115, 84),
-      );
-      SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
-        row: 9,
-        stepTime: 0.08,
-        from: 0,
-        to: 3,
-        loop: false,
-      );
-      animation = spriteAnimation;
+      animation = _attackAnimation;
 
       animationTicker?.onComplete = () {
         _isAttacking = false;
         remove(_attackHitbox);
-        add(_baseHitbox);
-        _setRunAnimation();
+        add(_runHitbox);
+        animation = _runAnimation;
       };
     }
   }
