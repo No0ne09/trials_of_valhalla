@@ -15,7 +15,6 @@ class Player extends SpriteAnimationComponent
   bool _isAttacking = false;
   bool _jumpAttack = false;
   double _movement = 0;
-  late double _gravity;
   late double _jumpStrength;
   late double _baseY;
   late final SpriteAnimation _runAnimation;
@@ -68,8 +67,7 @@ class Player extends SpriteAnimationComponent
         size[1] * 0.45,
       ),
     );
-    _jumpStrength = size[0] / 35;
-    _gravity = _jumpStrength / 90;
+    _jumpStrength = size[0] * 2;
     _baseY = gameRef.size[1] - size[1];
 
     _attackHitbox = RectangleHitbox(
@@ -94,8 +92,9 @@ class Player extends SpriteAnimationComponent
     }
     //if player _isJumping then its y is changing as long as it's higher or equal base y position
     if (_isJumping) {
-      y += _movement;
-      _movement += _gravity;
+      _movement += _jumpStrength * dt;
+      y += _movement * dt;
+
       //this check is needed for rare cases when attack and jump are ending at the same time and bad things are happening with hitbox managing
       if (!_isAttacking) {
         if (y >= _baseY) {
