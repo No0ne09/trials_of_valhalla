@@ -15,9 +15,8 @@ class GameButtonComponent extends SpriteComponent
 
   @override
   Future<void> onLoad() async {
-    size = Vector2(gameRef.size[1] / 8, gameRef.size[1] / 8);
+    size = Vector2(gameRef.size[1] / 6, gameRef.size[1] / 6);
     position = buttonPosition;
-
     sprite = await Sprite.load(path);
     return super.onLoad();
   }
