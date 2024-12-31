@@ -44,7 +44,7 @@ class GameScreen extends ConsumerWidget {
               "PauseButton": (context, GameCore game) =>
                   PauseButton(game: game),
               "GameOver": (context, GameCore game) {
-                //_handleGameOver(game, context);
+                _handleGameOver(game, context);
                 game.closeGame();
 
                 return ComplexScreenBase(

@@ -15,7 +15,6 @@ class ComplexScreenBase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text(
           title,
@@ -24,8 +23,8 @@ class ComplexScreenBase extends StatelessWidget {
               ),
         ),
         centerTitle: true,
-        forceMaterialTransparency: true,
         automaticallyImplyLeading: false,
+        forceMaterialTransparency: true,
       ),
       body: Background(
         child: Padding(
