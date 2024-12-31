@@ -74,6 +74,7 @@ flutter:
      - assets/images/
      - assets/images/parallax/
      - assets/images/game_images/
+     - assets/images/buttons/
      - assets/audio/sfx/
      - assets/audio/background/
     

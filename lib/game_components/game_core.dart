@@ -40,7 +40,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
 
     _scoreComponent = TextComponent(
       text: score.toString(),
-      position: Vector2(size.x / 2, 10),
+      position: Vector2(size.x / 2, size.y - 50),
       anchor: Anchor.topCenter,
       textRenderer: TextPaint(
         style: const TextStyle(

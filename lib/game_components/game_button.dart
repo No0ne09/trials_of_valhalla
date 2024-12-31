@@ -2,7 +2,7 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flutter/material.dart';
 
-class GameButton extends PositionComponent with TapCallbacks, HasGameRef {
+class GameButton extends SpriteComponent with TapCallbacks, HasGameRef {
   final Vector2 buttonPosition;
   final Color color;
   final void Function() onTap;
@@ -16,16 +16,17 @@ class GameButton extends PositionComponent with TapCallbacks, HasGameRef {
   Future<void> onLoad() async {
     size = Vector2(gameRef.size[1] / 8, gameRef.size[1] / 8);
     position = buttonPosition;
-    add(CircleComponent(
-      radius: size[1] / 2,
-      paint: Paint()..color = color,
-    ));
+
+    sprite = await Sprite.load('buttons/jump_button.png');
     return super.onLoad();
   }
 
   @override
   void onTapDown(TapDownEvent event) {
     onTap();
+    paint = Paint()..color = Colors.yellow;
+    onTap();
+
     super.onTapDown(event);
   }
 }

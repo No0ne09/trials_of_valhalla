@@ -12,7 +12,7 @@ class PauseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.bottomCenter,
+      alignment: Alignment.topCenter,
       child: IconButton(
         onPressed: () {
           game.pauseEngine();
