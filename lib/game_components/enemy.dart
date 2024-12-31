@@ -83,7 +83,6 @@ class Enemy extends SpriteAnimationComponent
       }
 
       opacity = tempOpacity;
-      print(opacity);
     });
   }
 }
