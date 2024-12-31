@@ -25,12 +25,16 @@ class GameOveralyPopup extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             isGameOver
-                ? Text(
-                    "You've scored\n${2137} points",
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                          fontFamily: defaultFontFamily,
-                        ),
+                ? Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "You've scored\n${2137} points",
+                      textAlign: TextAlign.center,
+                      style:
+                          Theme.of(context).textTheme.displayMedium!.copyWith(
+                                fontFamily: defaultFontFamily,
+                              ),
+                    ),
                   )
                 : MainButton(
                     icon: const Icon(Icons.play_arrow),
