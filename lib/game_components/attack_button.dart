@@ -10,10 +10,10 @@ class AttackButton extends PositionComponent with TapCallbacks, HasGameRef {
 
   @override
   Future<void> onLoad() async {
-    size = Vector2(50, 50);
-    position = Vector2(gameRef.size[0] - 50, gameRef.size[1] - 50);
-    add(RectangleComponent(
-      size: size,
+    size = Vector2(gameRef.size[1] / 10, gameRef.size[1] / 10);
+    position = Vector2(gameRef.size[0] - size[0] - 50, 50);
+    add(CircleComponent(
+      radius: size[1] / 2,
       paint: Paint()..color = Colors.red,
     ));
     return super.onLoad();

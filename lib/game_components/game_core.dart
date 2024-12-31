@@ -7,9 +7,8 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 
 import 'package:flame/parallax.dart';
-import 'package:trials_of_valhalla/game_components/attack_button.dart';
 import 'package:trials_of_valhalla/game_components/enemy.dart';
-import 'package:trials_of_valhalla/game_components/jump_button.dart';
+import 'package:trials_of_valhalla/game_components/game_button.dart';
 import 'package:trials_of_valhalla/game_components/player.dart';
 import 'package:trials_of_valhalla/game_components/obstacle.dart';
 import 'package:trials_of_valhalla/helpers/theme.dart';
@@ -74,8 +73,27 @@ class GameCore extends FlameGame with HasCollisionDetection {
       velocityMultiplierDelta: Vector2(1, 0),
     );
     add(parallaxBackground2);
-    add(JumpButton(player));
-    add(AttackButton(player));
+    add(
+      GameButton(
+        color: Colors.white,
+        onTap: player.jump,
+        buttonPosition: Vector2(
+          size[0] * 0.05,
+          size[1] * 0.05,
+        ),
+      ),
+    );
+    print(size[1]);
+    add(
+      GameButton(
+        color: accentColor,
+        onTap: player.attack,
+        buttonPosition: Vector2(
+          size[0] * 0.87,
+          size[1] * 0.05,
+        ),
+      ),
+    );
     add(_scoreComponent);
     overlays.add("PauseButton");
     // add(FpsTextComponent(position: Vector2(0, 0)));
