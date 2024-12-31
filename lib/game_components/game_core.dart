@@ -48,7 +48,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
           },
           shakeThresholdGravity: 1.1);
     }
-    print(size);
+
     _scoreComponent = TextComponent(
       text: score.toString(),
       position: Vector2(size.x / 2, size.y - 50),
@@ -111,7 +111,6 @@ class GameCore extends FlameGame with HasCollisionDetection {
 
   @override
   void update(double dt) {
-    score = 100;
     _scoreComponent.text = score.toString();
     _enemyTimerPeriod = max(0.8, 5.0 - score * 0.05);
     _enemyTimer += dt;
