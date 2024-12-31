@@ -76,7 +76,7 @@ class Enemy extends SpriteAnimationComponent
         );
         SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
           row: 1,
-          stepTime: 0.2,
+          stepTime: 0.1,
           from: 17,
           to: 23,
         );
