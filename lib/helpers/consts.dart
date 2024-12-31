@@ -1,3 +1,5 @@
+import 'package:uuid/uuid.dart';
+
 const characterPath = 'game_images/character.png';
 const buttonSFXPath = 'assets/audio/sfx/button.wav';
 const enemyDeathSfxPath = 'assets/audio/sfx/enemy.wav';
@@ -10,3 +12,5 @@ const obstacleWolfPath = "game_images/obstacle_wolf.png";
 const enemyBatPath = 'game_images/enemy_bat.png';
 const enemyNecroPath = 'game_images/enemy_necro.png';
 const enemyDraugrPath = 'game_images/enemy_draugr.png';
+
+const uuid = Uuid();
