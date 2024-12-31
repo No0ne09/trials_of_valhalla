@@ -36,7 +36,6 @@ class GameCore extends FlameGame with HasCollisionDetection {
   @override
   FutureOr<void> onLoad() async {
     Flame.device.fullScreen();
-    Flame.device.setPortraitUpOnly();
     FlameAudio.bgm.initialize();
     if (music) {
       FlameAudio.bgm.play("background/bg_music_${_random.nextInt(3) + 1}.mp3");
