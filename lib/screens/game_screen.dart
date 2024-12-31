@@ -15,10 +15,23 @@ class GameScreen extends ConsumerWidget {
     return PopScope(
         canPop: false,
         child: GameWidget(
+            overlayBuilderMap: {
+              "PauseButton": (context, GameCore game) {
+                return Align(
+                  alignment: Alignment.bottomCenter,
+                  child: IconButton(
+                    onPressed: () {
+                      game.pauseEngine();
+                    },
+                    icon: const Icon(Icons.pause),
+                  ),
+                );
+              }
+            },
             game: GameCore(
-          sfx: sfx,
-          music: music,
-          shake: shake,
-        )));
+              sfx: sfx,
+              music: music,
+              shake: shake,
+            )));
   }
 }

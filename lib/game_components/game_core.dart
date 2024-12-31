@@ -36,7 +36,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
     Flame.device.fullScreen();
     if (music) {
       FlameAudio.bgm.initialize();
-      FlameAudio.bgm.play("background/bg_music_${_random.nextInt(3)}.mp3");
+      FlameAudio.bgm.play("background/bg_music_${_random.nextInt(3) + 1}.mp3");
     }
     _scoreComponent = TextComponent(
       text: score.toString(),
@@ -76,6 +76,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
     add(JumpButton(player));
     add(AttackButton(player));
     add(_scoreComponent);
+    overlays.add("PauseButton");
     return super.onLoad();
   }
 
