@@ -74,11 +74,16 @@ class Enemy extends SpriteAnimationComponent
   void onHit() {
     isDead = true;
     async.Timer.periodic(const Duration(milliseconds: 50), (timer) {
-      opacity -= 0.2;
-      if (opacity <= 0) {
+      double tempOpacity = opacity - 0.15;
+      if (tempOpacity <= 0) {
+        tempOpacity = 0;
+        opacity = 0;
         removeFromParent();
         timer.cancel();
       }
+
+      opacity = tempOpacity;
+      print(opacity);
     });
   }
 }
