@@ -11,6 +11,7 @@ import 'package:trials_of_valhalla/game_components/enemy.dart';
 import 'package:trials_of_valhalla/game_components/game_button_component.dart';
 import 'package:trials_of_valhalla/game_components/player.dart';
 import 'package:trials_of_valhalla/game_components/obstacle.dart';
+import 'package:trials_of_valhalla/helpers/consts.dart';
 import 'package:trials_of_valhalla/helpers/theme.dart';
 
 class GameCore extends FlameGame with HasCollisionDetection {
@@ -75,23 +76,22 @@ class GameCore extends FlameGame with HasCollisionDetection {
     add(parallaxBackground2);
     add(
       GameButtonComponent(
-        color: Colors.white,
         onTap: player.jump,
         buttonPosition: Vector2(
           size[0] * 0.05,
           size[1] * 0.05,
         ),
+        path: jumpButtonPath,
       ),
     );
-    print(size[1]);
     add(
       GameButtonComponent(
-        color: accentColor,
         onTap: player.attack,
         buttonPosition: Vector2(
           size[0] * 0.87,
           size[1] * 0.05,
         ),
+        path: attackButtonPath,
       ),
     );
     add(_scoreComponent);

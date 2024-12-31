@@ -1,16 +1,16 @@
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
-import 'package:flutter/material.dart';
+import 'dart:async' as async;
 
 class GameButtonComponent extends SpriteComponent
     with TapCallbacks, HasGameRef {
   final Vector2 buttonPosition;
-  final Color color;
+  final String path;
   final void Function() onTap;
   GameButtonComponent({
     required this.buttonPosition,
-    required this.color,
     required this.onTap,
+    required this.path,
   });
 
   @override
@@ -18,15 +18,22 @@ class GameButtonComponent extends SpriteComponent
     size = Vector2(gameRef.size[1] / 8, gameRef.size[1] / 8);
     position = buttonPosition;
 
-    sprite = await Sprite.load('buttons/jump_button.png');
+    sprite = await Sprite.load(path);
     return super.onLoad();
   }
 
   @override
-  void onTapDown(TapDownEvent event) {
+  void onTapDown(TapDownEvent event) async {
     onTap();
-    paint = Paint()..color = Colors.yellow;
-    onTap();
+    async.Timer.periodic(const Duration(milliseconds: 50), (timer) {
+      double tempOpacity = opacity - 0.20;
+      if (tempOpacity <= 0.5) {
+        tempOpacity = 1;
+        opacity = 1;
+        timer.cancel();
+      }
+      opacity = tempOpacity;
+    });
 
     super.onTapDown(event);
   }

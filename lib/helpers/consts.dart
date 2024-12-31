@@ -4,3 +4,5 @@ const enemyDeathPath = 'assets/audio/sfx/enemy.wav';
 const attackSfxPath = 'assets/audio/sfx/attack.wav';
 const jumpSfxPath = 'assets/audio/sfx/jump.wav';
 const logoPath = 'assets/images/logo.png';
+const jumpButtonPath = 'buttons/jump_button.png';
+const attackButtonPath = 'buttons/attack_button.png';
