@@ -125,7 +125,7 @@ class Enemy extends SpriteAnimationComponent
           RectangleHitbox(
             anchor: Anchor.center,
             size: Vector2(
-              size[0] * 0.45,
+              size[0] * 0.4,
               size[1] * 0.25,
             ),
             position: Vector2(
