@@ -32,3 +32,13 @@ const noConnectionPopUpInfo =
 const resume = "Resume";
 const exit = "Exit";
 const tryAgain = "Try again";
+
+const minimum = "Minimum";
+const extremelyLow = "Extremely Low";
+const veryLow = "Very low";
+const low = "Low";
+const medium = "Medium";
+const high = "High";
+const veryHigh = "Very high";
+const extremelyHigh = "Extremely high";
+const maxium = "Maximum";
