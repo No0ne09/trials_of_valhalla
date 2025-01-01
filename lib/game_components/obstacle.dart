@@ -35,7 +35,6 @@ class Obstacle extends SpriteAnimationComponent
         size: Vector2(size[0] * 0.92, size[1] * 0.65),
       ),
     );
-    debugMode = true;
     return super.onLoad();
   }
 

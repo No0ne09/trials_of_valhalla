@@ -55,7 +55,6 @@ class Player extends SpriteAnimationComponent
       ),
     );
     add(_runHitbox);
-    debugMode = true;
 
     _jumpHitbox = RectangleHitbox(
       position: Vector2(

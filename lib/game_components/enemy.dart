@@ -94,7 +94,6 @@ class Enemy extends SpriteAnimationComponent
         );
     }
 
-    debugMode = true;
     return super.onLoad();
   }
 
