@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trials_of_valhalla/game_components/game_core.dart';
 import 'package:trials_of_valhalla/helpers/consts.dart';
@@ -12,9 +13,14 @@ import 'package:trials_of_valhalla/widgets/buttons/pause_button.dart';
 import 'package:trials_of_valhalla/screens/complex_screen_base.dart';
 import 'package:trials_of_valhalla/widgets/popups/game_overaly_popup.dart';
 
-class GameScreen extends ConsumerWidget {
+class GameScreen extends ConsumerStatefulWidget {
   const GameScreen({super.key});
 
+  @override
+  ConsumerState<GameScreen> createState() => _GameScreenState();
+}
+
+class _GameScreenState extends ConsumerState<GameScreen> {
   void _uploadScore(int score, BuildContext context) {
     try {
       FirebaseFirestore.instance.collection("high_scores").doc(uuid.v4()).set({
@@ -33,7 +39,19 @@ class GameScreen extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  void initState() {
+    super.initState();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  }
+
+  @override
+  void dispose() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final shake = ref.watch(shakeProvider);
     final music = ref.watch(bgMusicProvider);
     final sfx = ref.watch(sfxProvider);

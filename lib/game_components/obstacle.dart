@@ -15,7 +15,6 @@ class Obstacle extends SpriteAnimationComponent
   Obstacle({required this.speed});
   @override
   FutureOr<void> onLoad() async {
-    debugMode = true;
     final spriteSheet = SpriteSheet(
       image: await gameRef.images.load(obstacleWolfPath),
       srcSize: Vector2(

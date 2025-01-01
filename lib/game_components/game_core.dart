@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:math';
-import 'package:flame/flame.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/components.dart';
@@ -39,7 +38,6 @@ class GameCore extends FlameGame with HasCollisionDetection {
   @override
   FutureOr<void> onLoad() async {
     //debugMode = true;
-    Flame.device.fullScreen();
     FlameAudio.bgm.initialize();
     if (music) {
       FlameAudio.bgm.play("background/bg_music_${_random.nextInt(3) + 1}.mp3");
