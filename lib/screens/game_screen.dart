@@ -45,12 +45,6 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   }
 
   @override
-  void dispose() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final shake = ref.watch(shakeProvider);
     final music = ref.watch(bgMusicProvider);
@@ -65,6 +59,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
             if (game.score > 0) _uploadScore(game.score, context);
             game.closeGame();
             if (sfx) playSFX(playerDeathSfxPath);
+            SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
             return ComplexScreenBase(
               title: gameOver,
               divider: 1,

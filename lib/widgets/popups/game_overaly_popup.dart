@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:trials_of_valhalla/game_components/game_core.dart';
-import 'package:trials_of_valhalla/helpers/functions.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
 import 'package:trials_of_valhalla/helpers/theme.dart';
+import 'package:trials_of_valhalla/screens/game_screen.dart';
 import 'package:trials_of_valhalla/widgets/buttons/main_button.dart';
 
 class GameOveralyPopup extends StatelessWidget {
@@ -15,6 +16,21 @@ class GameOveralyPopup extends StatelessWidget {
   final GameCore game;
   final bool isGameOver;
   final int? score;
+  void _restartGame(GameCore game, BuildContext context) {
+    game.closeGame();
+    if (!context.mounted) return;
+    if (!isGameOver) Navigator.pop(context);
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+      builder: (context) => const GameScreen(),
+    ));
+  }
+
+  void _endGame(GameCore game, BuildContext context) {
+    game.closeGame();
+    if (!context.mounted) return;
+    if (!isGameOver) Navigator.pop(context);
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +62,9 @@ class GameOveralyPopup extends StatelessWidget {
             MainButton(
               text: tryAgain,
               onPressed: () {
-                restartGame(
+                _restartGame(
                   game,
                   context,
-                  isGameOver,
                 );
               },
               icon: const Icon(Icons.restart_alt),
@@ -57,8 +72,12 @@ class GameOveralyPopup extends StatelessWidget {
             MainButton(
               icon: const Icon(Icons.exit_to_app),
               text: exit,
-              onPressed: () {
-                endGame(game, context, isGameOver);
+              onPressed: () async {
+                SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+                _endGame(
+                  game,
+                  context,
+                );
               },
             ),
           ],
