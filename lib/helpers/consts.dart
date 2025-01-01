@@ -20,16 +20,16 @@ const uuid = Uuid();
 const baseThreshold = 1.5;
 const List<Map<String, double>> thresholdsOptions = [
   {
-    minimum: 1.05,
+    minimum: 1.02,
   },
   {
-    extremelyLow: 1.1,
+    extremelyLow: 1.05,
   },
   {
-    veryLow: 1.25,
+    veryLow: 1.1,
   },
   {
-    low: 1.4,
+    low: 1.25,
   },
   {
     medium: baseThreshold,
@@ -41,9 +41,9 @@ const List<Map<String, double>> thresholdsOptions = [
     veryHigh: 2.5,
   },
   {
-    extremelyHigh: 3.0,
+    extremelyHigh: 2.75,
   },
   {
-    maxium: 3.5,
+    maxium: 3.0,
   },
 ];
