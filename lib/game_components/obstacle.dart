@@ -15,6 +15,7 @@ class Obstacle extends SpriteAnimationComponent
   Obstacle({required this.speed});
   @override
   FutureOr<void> onLoad() async {
+    debugMode = true;
     final spriteSheet = SpriteSheet(
       image: await gameRef.images.load(obstacleWolfPath),
       srcSize: Vector2(
@@ -41,11 +42,11 @@ class Obstacle extends SpriteAnimationComponent
       RectangleHitbox(
         anchor: Anchor.center,
         size: Vector2(
-          size[0] * 0.65,
+          size[0] * 0.82,
           size[1] * 0.65,
         ),
         position: Vector2(
-          size[0] * 0.65,
+          size[0] * 0.55,
           size[1] * 0.65,
         ),
       ),
