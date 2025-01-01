@@ -46,7 +46,7 @@ class _AuthScreenState extends State<AuthScreen> {
         await savePrefs("music", true);
         await savePrefs("sfx", true);
         await savePrefs("shake", true);
-        await savePrefs("threshold", 1.5);
+        await savePrefs("threshold", baseThreshold);
       } on FirebaseAuthException catch (e) {
         if (!mounted) return;
         setState(() {

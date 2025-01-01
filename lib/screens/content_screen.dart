@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trials_of_valhalla/helpers/consts.dart';
 import 'package:trials_of_valhalla/helpers/functions.dart';
 import 'package:trials_of_valhalla/helpers/providers.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
@@ -42,7 +43,9 @@ class _ContentScreenState extends ConsumerState<ContentScreen> {
     ref.read(sfxProvider.notifier).state = sfx;
     final shake = await loadPrefs("shake", bool) as bool? ?? false;
     ref.read(shakeProvider.notifier).state = shake;
-    final threshold = await loadPrefs("threshold", double) as double? ?? 1.5;
+    final threshold =
+        await loadPrefs("threshold", double) as double? ?? baseThreshold;
+    ref.read(thresholdProvider.notifier).state = threshold;
   }
 
   @override
