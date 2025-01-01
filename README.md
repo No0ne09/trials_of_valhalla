@@ -7,7 +7,7 @@ Repository used for Game Design For Mobile Devices final project
 
 To start the game, the user has to create an account, and thanks to this, their scores are saved in **Firestone**.
 
-**Firebase specific files contain API keys so they are not available in this repository. If you want to compile the app you need to add Firebase configuration by yourself.**
+**Firebase specific files contain API keys so they are not available in this repository. If you want to compile the application, you will need to add Firebase configuration by yourself.**
 
 # Font
 ### Jersey 10 Designed by Sarah Cadigan-Fried ###
