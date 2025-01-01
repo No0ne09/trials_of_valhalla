@@ -166,20 +166,24 @@ class Player extends SpriteAnimationComponent
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is Enemy) {
-      if (other.isDead) {
-      } else if (_isAttacking) {
-        other.onHit();
-        gameRef.score += 1;
-        if (sfx) playSFX(enemyDeathSfxPath);
-      } else {
-        _updateOverlays();
-        // gameRef.pauseEngine();
-      }
+      _handleEnemyCollision(other);
     } else {
       _updateOverlays();
       //gameRef.pauseEngine();
     }
     super.onCollision(intersectionPoints, other);
+  }
+
+  void _handleEnemyCollision(Enemy enemy) {
+    if (enemy.isDead) return;
+    if (_isAttacking) {
+      enemy.onHit();
+      gameRef.score += 1;
+      if (sfx) playSFX(enemyDeathSfxPath);
+    } else {
+      _updateOverlays();
+      // gameRef.pauseEngine();
+    }
   }
 
   void _updateOverlays() {
