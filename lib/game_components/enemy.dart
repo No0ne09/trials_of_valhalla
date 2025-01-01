@@ -44,8 +44,8 @@ class Enemy extends SpriteAnimationComponent
         add(
           RectangleHitbox(
             anchor: Anchor.center,
-            position: Vector2(size[0] * 0.5, size[1] * 0.55),
             size: Vector2(size[0] * 0.52, size[1] * 0.51),
+            position: Vector2(size[0] * 0.5, size[1] * 0.55),
           ),
         );
 
@@ -66,8 +66,8 @@ class Enemy extends SpriteAnimationComponent
         add(
           RectangleHitbox(
             anchor: Anchor.center,
+            size: Vector2(size[0] * 0.18, size[1] * 0.4),
             position: Vector2(size[0] * 0.49, size[1] * 0.7),
-            size: Vector2(size[0] * 0.25, size[1] * 0.4),
           ),
         );
       case EnemyType.draugr:
