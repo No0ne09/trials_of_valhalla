@@ -22,12 +22,20 @@ class ThresholdController extends ConsumerWidget {
           value: threshold,
           items: [
             DropdownMenuItem(
-              child: Text("Very low"),
+              child: Text("Minimum"),
               value: 1.05,
             ),
             DropdownMenuItem(
+              child: Text("Extremely low"),
+              value: 1.1,
+            ),
+            DropdownMenuItem(
+              child: Text("Very low"),
+              value: 1.25,
+            ),
+            DropdownMenuItem(
               child: Text("Low"),
-              value: 1.35,
+              value: 1.4,
             ),
             DropdownMenuItem(
               child: Text("Medium"),
@@ -35,11 +43,19 @@ class ThresholdController extends ConsumerWidget {
             ),
             DropdownMenuItem(
               child: Text("High"),
-              value: 2.6,
+              value: 2.0,
             ),
             DropdownMenuItem(
               child: Text("Very High"),
+              value: 2.5,
+            ),
+            DropdownMenuItem(
+              child: Text("Extremely High"),
               value: 3.0,
+            ),
+            DropdownMenuItem(
+              child: Text("Maximum"),
+              value: 3.5,
             ),
           ],
           onChanged: (value) async {
