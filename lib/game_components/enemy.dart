@@ -31,7 +31,7 @@ class Enemy extends SpriteAnimationComponent
         );
         SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
           row: 0,
-          stepTime: 0.07,
+          stepTime: 0.05,
           from: 0,
           to: 9,
         );
@@ -88,8 +88,8 @@ class Enemy extends SpriteAnimationComponent
         add(
           RectangleHitbox(
             anchor: Anchor.center,
-            size: Vector2(size[0] * 0.47, size[1] * 0.3),
-            position: Vector2(size[0] * 0.55, size[1] * 0.6),
+            size: Vector2(size[0] * 0.45, size[1] * 0.25),
+            position: Vector2(size[0] * 0.52, size[1] * 0.65),
           ),
         );
     }

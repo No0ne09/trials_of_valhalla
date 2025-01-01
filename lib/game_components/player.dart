@@ -59,11 +59,11 @@ class Player extends SpriteAnimationComponent
     _jumpHitbox = RectangleHitbox(
       position: Vector2(
         size[0] * 0.32,
-        size[1] * 0.2,
+        size[1] * 0.15,
       ),
       size: Vector2(
         size[0] * 0.22,
-        size[1] * 0.4,
+        size[1] * 0.35,
       ),
     );
     _jumpStrength = size[0] * 2;
@@ -152,11 +152,11 @@ class Player extends SpriteAnimationComponent
         gameRef.score += 1;
         if (sfx) playSFX(enemyDeathSfxPath);
       } else {
-        _updateOverlays();
-        //gameRef.pauseEngine();
+        //_updateOverlays();
+        // gameRef.pauseEngine();
       }
     } else {
-      _updateOverlays();
+      //_updateOverlays();
       //gameRef.pauseEngine();
     }
     super.onCollision(intersectionPoints, other);
