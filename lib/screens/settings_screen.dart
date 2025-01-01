@@ -28,6 +28,9 @@ class SettingsScreen extends StatelessWidget {
               dataKey: "sfx",
             ),
             const ShakeSettings(),
+            const SizedBox(
+              height: 8,
+            ),
           ],
         ),
       ),
