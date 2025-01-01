@@ -42,3 +42,5 @@ const high = "High";
 const veryHigh = "Very high";
 const extremelyHigh = "Extremely high";
 const maxium = "Maximum";
+
+const shakeThreshold = "Shake threshold";

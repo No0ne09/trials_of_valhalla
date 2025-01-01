@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trials_of_valhalla/helpers/consts.dart';
 import 'package:trials_of_valhalla/helpers/functions.dart';
 import 'package:trials_of_valhalla/helpers/providers.dart';
+import 'package:trials_of_valhalla/helpers/strings.dart';
 import 'package:trials_of_valhalla/helpers/theme.dart';
 
 class ThresholdController extends ConsumerWidget {
@@ -14,7 +15,7 @@ class ThresholdController extends ConsumerWidget {
     return Card(
       child: ListTile(
         title: Text(
-          "Shake threshold",
+          shakeThreshold,
           style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                 fontFamily: defaultFontFamily,
               ),
