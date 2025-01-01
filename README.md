@@ -32,7 +32,11 @@ All of these assets were acquired thanks to itch.io
 **https://alkakrab.itch.io/free-viking-folk-music-pack**
 
 ### FREE Enemy: Winter Canines by Admurin
-***https://admurin.itch.io/enemy-winter-canines***
+**https://admurin.itch.io/enemy-winter-canines**
 
 ### PS4 Contoller Buttons FREE by Notokapixel
-***https://narehop.itch.io/ps4-controller-buttons-free?download***
+**https://narehop.itch.io/ps4-controller-buttons-free?download**
+
+# Font
+
+**https://fonts.google.com/specimen/Jersey+10**
