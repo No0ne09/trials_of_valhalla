@@ -1,6 +1,7 @@
 import 'package:audiofilereader/audiofileplayer.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trials_of_valhalla/game_components/game_core.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
 import 'package:trials_of_valhalla/screens/game_screen.dart';
@@ -70,4 +71,40 @@ void endGame(GameCore game, BuildContext context, bool isGameOver) {
   if (!context.mounted) return;
   if (!isGameOver) Navigator.pop(context);
   Navigator.pop(context);
+}
+
+Future<void> savePrefs(String key, dynamic value) async {
+  final prefs = await SharedPreferences.getInstance();
+
+  if (value is bool) {
+    await prefs.setBool(key, value);
+  } else if (value is int) {
+    await prefs.setInt(key, value);
+  } else if (value is double) {
+    await prefs.setDouble(key, value);
+  } else if (value is String) {
+    await prefs.setString(key, value);
+  } else if (value is List<String>) {
+    await prefs.setStringList(key, value);
+  } else {
+    throw Exception();
+  }
+}
+
+Future<dynamic> loadPrefs(String key, Type type) async {
+  final prefs = await SharedPreferences.getInstance();
+
+  if (type == bool) {
+    return prefs.getBool(key);
+  } else if (type == int) {
+    return prefs.getInt(key);
+  } else if (type == double) {
+    return prefs.getDouble(key);
+  } else if (type == String) {
+    return prefs.getString(key);
+  } else if (type == List<String>) {
+    return prefs.getStringList(key);
+  } else {
+    throw Exception();
+  }
 }

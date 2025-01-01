@@ -46,6 +46,7 @@ dependencies:
   flame_audio: ^2.10.6
   uuid: ^3.0.7
   shake_detector: ^0.1.2
+  shared_preferences: ^2.3.4
 
 
 dev_dependencies:

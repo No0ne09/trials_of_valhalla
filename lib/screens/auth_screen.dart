@@ -43,6 +43,10 @@ class _AuthScreenState extends State<AuthScreen> {
                 email: email, password: password)
             : await _authInstance.createUserWithEmailAndPassword(
                 email: email, password: password);
+        await savePrefs("music", true);
+        await savePrefs("sfx", true);
+        await savePrefs("shake", true);
+        await savePrefs("threshold", 1.5);
       } on FirebaseAuthException catch (e) {
         if (!mounted) return;
         setState(() {

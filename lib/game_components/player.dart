@@ -154,10 +154,10 @@ class Player extends SpriteAnimationComponent
         gameRef.score += 1;
         if (sfx) playSFX(enemyDeathSfxPath);
       } else {
-        gameRef.overlays.add("GameOver");
+        //gameRef.overlays.add("GameOver");
       }
     } else {
-      gameRef.overlays.add("GameOver");
+      // gameRef.overlays.add("GameOver");
     }
     super.onCollision(intersectionPoints, other);
   }
