@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trials_of_valhalla/helpers/functions.dart';
+import 'package:trials_of_valhalla/helpers/providers.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
 import 'package:trials_of_valhalla/helpers/theme.dart';
 import 'package:trials_of_valhalla/screens/game_screen.dart';
@@ -10,14 +12,14 @@ import 'package:trials_of_valhalla/screens/settings_screen.dart';
 import 'package:trials_of_valhalla/widgets/buttons/main_button.dart';
 import 'package:trials_of_valhalla/widgets/layout/background.dart';
 
-class ContentScreen extends StatefulWidget {
+class ContentScreen extends ConsumerStatefulWidget {
   const ContentScreen({super.key});
 
   @override
-  State<ContentScreen> createState() => _ContentScreenState();
+  ConsumerState<ContentScreen> createState() => _ContentScreenState();
 }
 
-class _ContentScreenState extends State<ContentScreen> {
+class _ContentScreenState extends ConsumerState<ContentScreen> {
   void _navigate(Widget screen) {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => screen,
@@ -33,6 +35,16 @@ class _ContentScreenState extends State<ContentScreen> {
     );
   }
 
+  void _loadSettings() async {
+    final music = await loadPrefs("music", bool) as bool? ?? false;
+    ref.read(bgMusicProvider.notifier).state = music;
+    final sfx = await loadPrefs("sfx", bool) as bool? ?? false;
+    ref.read(sfxProvider.notifier).state = sfx;
+    final shake = await loadPrefs("shake", bool) as bool? ?? false;
+    ref.read(shakeProvider.notifier).state = shake;
+    final threshold = await loadPrefs("threshold", double) as double? ?? 1.5;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -42,6 +54,7 @@ class _ContentScreenState extends State<ContentScreen> {
     WidgetsBinding.instance.addPostFrameCallback(
       (timeStamp) => _showOfflineWarning(),
     );
+    _loadSettings();
   }
 
   @override

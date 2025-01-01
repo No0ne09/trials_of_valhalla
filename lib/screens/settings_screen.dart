@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trials_of_valhalla/helpers/functions.dart';
 import 'package:trials_of_valhalla/helpers/providers.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
 import 'package:trials_of_valhalla/widgets/layout/complex_screen_base.dart';
@@ -23,21 +24,24 @@ class SettingsScreen extends ConsumerWidget {
             CustomSwitch(
               text: useShake,
               value: shake,
-              onChanged: (value) {
+              onChanged: (value) async {
+                await savePrefs("shake", value);
                 ref.read(shakeProvider.notifier).state = value;
               },
             ),
             CustomSwitch(
               text: playMusic,
               value: music,
-              onChanged: (value) {
+              onChanged: (value) async {
+                await savePrefs("music", value);
                 ref.read(bgMusicProvider.notifier).state = value;
               },
             ),
             CustomSwitch(
               text: playSfx,
               value: sfx,
-              onChanged: (value) {
+              onChanged: (value) async {
+                await savePrefs("sfx", value);
                 ref.read(sfxProvider.notifier).state = value;
               },
             ),
