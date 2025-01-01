@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trials_of_valhalla/helpers/providers.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
 import 'package:trials_of_valhalla/widgets/layout/complex_screen_base.dart';
 import 'package:trials_of_valhalla/widgets/settings/custom_switch.dart';
-import 'package:trials_of_valhalla/widgets/settings/threshold_controller.dart';
+import 'package:trials_of_valhalla/widgets/settings/threshold/shake_settings.dart';
 
-class SettingsScreen extends ConsumerWidget {
+class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final shake = ref.watch(shakeProvider);
+  Widget build(BuildContext context) {
     return ComplexScreenBase(
       divider: 1.8,
       title: settings,
@@ -29,12 +27,7 @@ class SettingsScreen extends ConsumerWidget {
               provider: sfxProvider,
               dataKey: "sfx",
             ),
-            CustomSwitch(
-              text: useShake,
-              provider: shakeProvider,
-              dataKey: "shake",
-            ),
-            if (shake) const ThresholdController(),
+            const ShakeSettings(),
           ],
         ),
       ),
