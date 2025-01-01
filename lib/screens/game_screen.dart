@@ -48,7 +48,7 @@ class GameScreen extends ConsumerWidget {
             game.closeGame();
             playSFX(deathSfxPath);
             return ComplexScreenBase(
-              title: "gameover",
+              title: gameOver,
               divider: 1,
               child: GameOveralyPopup(
                 game: game,

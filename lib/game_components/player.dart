@@ -153,11 +153,16 @@ class Player extends SpriteAnimationComponent
         gameRef.score += 1;
         if (sfx) playSFX(enemyDeathSfxPath);
       } else {
-        //gameRef.overlays.add("GameOver");
+        _updateOverlays();
       }
     } else {
-      // gameRef.overlays.add("GameOver");
+      _updateOverlays();
     }
     super.onCollision(intersectionPoints, other);
+  }
+
+  void _updateOverlays() {
+    game.overlays.remove("PauseButton");
+    gameRef.overlays.add("GameOver");
   }
 }

@@ -28,7 +28,7 @@ class GameOveralyPopup extends StatelessWidget {
                 ? Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "$scored\n${2137} $points",
+                      "$scored\n$score $points",
                       textAlign: TextAlign.center,
                       style:
                           Theme.of(context).textTheme.displayMedium!.copyWith(

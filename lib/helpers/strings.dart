@@ -46,3 +46,5 @@ const maxium = "Maximum";
 const shakeThreshold = "Shake threshold";
 const points = "points";
 const scored = "You've scored";
+
+const gameOver = "Game Over";
