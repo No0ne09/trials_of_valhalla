@@ -40,7 +40,7 @@ class Obstacle extends SpriteAnimationComponent
 
   @override
   void update(double dt) {
-    x -= speed;
+    x -= speed * dt;
     if (x <= -size.x) {
       gameRef.score += 1;
       removeFromParent();

@@ -99,7 +99,7 @@ class Enemy extends SpriteAnimationComponent
 
   @override
   void update(double dt) {
-    x -= speed;
+    x -= speed * dt;
     if (x <= -size.x) {
       removeFromParent();
     }
