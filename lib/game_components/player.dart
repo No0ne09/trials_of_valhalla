@@ -67,11 +67,11 @@ class Player extends SpriteAnimationComponent
     _runHitbox = RectangleHitbox(
       position: Vector2(
         size[0] * 0.42,
-        size[1] * 0.33,
+        size[1] * 0.35,
       ),
       size: Vector2(
-        size[0] * 0.23,
-        size[1] * 0.52,
+        size[0] * 0.2,
+        size[1] * 0.46,
       ),
     );
     add(_runHitbox);
@@ -91,11 +91,11 @@ class Player extends SpriteAnimationComponent
     _attackHitbox = RectangleHitbox(
       position: Vector2(
         size[0] * 0.33,
-        size[1] * 0.33,
+        size[1] * 0.35,
       ),
       size: Vector2(
         size[0] * 0.4,
-        size[1] * 0.52,
+        size[1] * 0.46,
       ),
     );
     return super.onLoad();
