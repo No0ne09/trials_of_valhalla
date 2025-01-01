@@ -26,6 +26,7 @@ class Player extends SpriteAnimationComponent
 
   @override
   Future<void> onLoad() async {
+    debugMode = true;
     final spriteSheet = SpriteSheet(
       image: await gameRef.images.load(characterPath),
       srcSize: Vector2(115, 84),
@@ -46,11 +47,11 @@ class Player extends SpriteAnimationComponent
     animation = _runAnimation;
     _runHitbox = RectangleHitbox(
       position: Vector2(
-        size[0] * 0.35,
+        size[0] * 0.42,
         size[1] * 0.33,
       ),
       size: Vector2(
-        size[0] * 0.32,
+        size[0] * 0.23,
         size[1] * 0.52,
       ),
     );
@@ -58,17 +59,16 @@ class Player extends SpriteAnimationComponent
 
     _jumpHitbox = RectangleHitbox(
       position: Vector2(
-        size[0] * 0.3,
+        size[0] * 0.32,
         size[1] * 0.2,
       ),
       size: Vector2(
-        size[0] * 0.3,
-        size[1] * 0.45,
+        size[0] * 0.22,
+        size[1] * 0.4,
       ),
     );
     _jumpStrength = size[0] * 2;
     _baseY = gameRef.size[1] - size[1];
-
     _attackHitbox = RectangleHitbox(
       position: Vector2(
         size[0] * 0.33,
@@ -154,11 +154,11 @@ class Player extends SpriteAnimationComponent
         if (sfx) playSFX(enemyDeathSfxPath);
       } else {
         //_updateOverlays();
-        gameRef.pauseEngine();
+        //gameRef.pauseEngine();
       }
     } else {
       //_updateOverlays();
-      gameRef.pauseEngine();
+      //gameRef.pauseEngine();
     }
     super.onCollision(intersectionPoints, other);
   }
