@@ -26,7 +26,6 @@ class Player extends SpriteAnimationComponent
 
   @override
   Future<void> onLoad() async {
-    debugMode = true;
     final spriteSheet = SpriteSheet(
       image: await gameRef.images.load(characterPath),
       srcSize: Vector2(115, 84),
@@ -153,11 +152,11 @@ class Player extends SpriteAnimationComponent
         gameRef.score += 1;
         if (sfx) playSFX(enemyDeathSfxPath);
       } else {
-        //_updateOverlays();
+        _updateOverlays();
         //gameRef.pauseEngine();
       }
     } else {
-      //_updateOverlays();
+      _updateOverlays();
       //gameRef.pauseEngine();
     }
     super.onCollision(intersectionPoints, other);
