@@ -55,7 +55,10 @@ class GameCore extends FlameGame with HasCollisionDetection {
 
     _scoreComponent = TextComponent(
       text: score.toString(),
-      position: Vector2(size.x / 2, size.y - 50),
+      position: Vector2(
+        size.x / 2,
+        size.y - 50,
+      ),
       anchor: Anchor.topCenter,
       textRenderer: TextPaint(
         style: const TextStyle(
@@ -73,8 +76,14 @@ class GameCore extends FlameGame with HasCollisionDetection {
           ParallaxImageData('parallax/3.png'),
           ParallaxImageData('parallax/4.png'),
         ],
-        baseVelocity: Vector2(10, 0),
-        velocityMultiplierDelta: Vector2(1.4, 0),
+        baseVelocity: Vector2(
+          10,
+          0,
+        ),
+        velocityMultiplierDelta: Vector2(
+          1.4,
+          0,
+        ),
       ),
     );
     add(player);
@@ -83,8 +92,14 @@ class GameCore extends FlameGame with HasCollisionDetection {
         [
           ParallaxImageData('parallax/5.png'),
         ],
-        baseVelocity: Vector2(10, 0),
-        velocityMultiplierDelta: Vector2(1, 0),
+        baseVelocity: Vector2(
+          10,
+          0,
+        ),
+        velocityMultiplierDelta: Vector2(
+          1,
+          0,
+        ),
       ),
     );
     add(

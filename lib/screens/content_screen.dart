@@ -37,11 +37,11 @@ class _ContentScreenState extends ConsumerState<ContentScreen> {
   }
 
   void _loadSettings() async {
-    final music = await loadPrefs("music", bool) as bool? ?? false;
+    final music = await loadPrefs("music", bool) as bool? ?? true;
     ref.read(bgMusicProvider.notifier).state = music;
-    final sfx = await loadPrefs("sfx", bool) as bool? ?? false;
+    final sfx = await loadPrefs("sfx", bool) as bool? ?? true;
     ref.read(sfxProvider.notifier).state = sfx;
-    final shake = await loadPrefs("shake", bool) as bool? ?? false;
+    final shake = await loadPrefs("shake", bool) as bool? ?? true;
     ref.read(shakeProvider.notifier).state = shake;
     final threshold =
         await loadPrefs("threshold", double) as double? ?? baseThreshold;

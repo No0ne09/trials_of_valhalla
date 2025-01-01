@@ -27,7 +27,10 @@ class Enemy extends SpriteAnimationComponent
       case EnemyType.bat:
         spriteSheet = SpriteSheet(
           image: await gameRef.images.load(enemyBatPath),
-          srcSize: Vector2(64, 64),
+          srcSize: Vector2(
+            64,
+            64,
+          ),
         );
         SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
           row: 0,
@@ -40,19 +43,31 @@ class Enemy extends SpriteAnimationComponent
           gameRef.size[1] * 0.25,
           gameRef.size[1] * 0.25,
         );
-        position = Vector2(startX, gameRef.size[1] * 0.33);
+        position = Vector2(
+          startX,
+          gameRef.size[1] * 0.33,
+        );
         add(
           RectangleHitbox(
             anchor: Anchor.center,
-            size: Vector2(size[0] * 0.52, size[1] * 0.51),
-            position: Vector2(size[0] * 0.5, size[1] * 0.55),
+            size: Vector2(
+              size[0] * 0.52,
+              size[1] * 0.51,
+            ),
+            position: Vector2(
+              size[0] * 0.5,
+              size[1] * 0.55,
+            ),
           ),
         );
 
       case EnemyType.necro:
         spriteSheet = SpriteSheet(
           image: await gameRef.images.load(enemyNecroPath),
-          srcSize: Vector2(160, 128),
+          srcSize: Vector2(
+            160,
+            128,
+          ),
         );
         SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
           row: 4,
@@ -61,19 +76,34 @@ class Enemy extends SpriteAnimationComponent
           to: 17,
         );
         animation = spriteAnimation;
-        size = Vector2(gameRef.size[0] / 1.5, gameRef.size[1] / 1.25);
-        position = Vector2(startX, gameRef.size[1] / 5);
+        size = Vector2(
+          gameRef.size[0] / 1.5,
+          gameRef.size[1] / 1.25,
+        );
+        position = Vector2(
+          startX,
+          gameRef.size[1] / 5,
+        );
         add(
           RectangleHitbox(
             anchor: Anchor.center,
-            size: Vector2(size[0] * 0.18, size[1] * 0.4),
-            position: Vector2(size[0] * 0.49, size[1] * 0.7),
+            size: Vector2(
+              size[0] * 0.18,
+              size[1] * 0.4,
+            ),
+            position: Vector2(
+              size[0] * 0.49,
+              size[1] * 0.7,
+            ),
           ),
         );
       case EnemyType.draugr:
         spriteSheet = SpriteSheet(
           image: await gameRef.images.load(enemyDraugrPath),
-          srcSize: Vector2(80, 80),
+          srcSize: Vector2(
+            80,
+            80,
+          ),
         );
         SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
           row: 1,
@@ -82,14 +112,26 @@ class Enemy extends SpriteAnimationComponent
           to: 23,
         );
         animation = spriteAnimation;
-        size = Vector2(gameRef.size[0] / 3, gameRef.size[1] / 2);
-        position = Vector2(startX, gameRef.size[1] * 0.5);
+        size = Vector2(
+          gameRef.size[0] / 3,
+          gameRef.size[1] / 2,
+        );
+        position = Vector2(
+          startX,
+          gameRef.size[1] * 0.5,
+        );
 
         add(
           RectangleHitbox(
             anchor: Anchor.center,
-            size: Vector2(size[0] * 0.45, size[1] * 0.25),
-            position: Vector2(size[0] * 0.52, size[1] * 0.65),
+            size: Vector2(
+              size[0] * 0.45,
+              size[1] * 0.25,
+            ),
+            position: Vector2(
+              size[0] * 0.52,
+              size[1] * 0.65,
+            ),
           ),
         );
     }

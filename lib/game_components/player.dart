@@ -27,13 +27,35 @@ class Player extends SpriteAnimationComponent
   @override
   Future<void> onLoad() async {
     final spriteSheet = SpriteSheet(
-      image: await gameRef.images.load(characterPath),
-      srcSize: Vector2(115, 84),
+      image: await gameRef.images.load(
+        characterPath,
+      ),
+      srcSize: Vector2(
+        115,
+        84,
+      ),
     );
-    _runAnimation =
-        spriteSheet.createAnimation(row: 2, stepTime: 0.1, from: 1, to: 8);
+    size = Vector2(
+      gameRef.size[1] / 2,
+      gameRef.size[1] / 2,
+    );
+    position = Vector2(
+      0,
+      gameRef.size[1] - size[1],
+    );
+    _runAnimation = spriteSheet.createAnimation(
+      row: 2,
+      stepTime: 0.1,
+      from: 1,
+      to: 8,
+    );
     _jumpAnimation = spriteSheet.createAnimation(
-        row: 19, stepTime: 0.3, from: 0, to: 4, loop: false);
+      row: 19,
+      stepTime: 0.3,
+      from: 0,
+      to: 4,
+      loop: false,
+    );
     _attackAnimation = spriteSheet.createAnimation(
       row: 9,
       stepTime: 0.07,
@@ -41,8 +63,6 @@ class Player extends SpriteAnimationComponent
       to: 3,
       loop: false,
     );
-    size = Vector2(gameRef.size[1] / 2, gameRef.size[1] / 2);
-    position = Vector2(0, gameRef.size[1] - size[1]);
     animation = _runAnimation;
     _runHitbox = RectangleHitbox(
       position: Vector2(
@@ -110,13 +130,13 @@ class Player extends SpriteAnimationComponent
 
   void jump() {
     if (!_isJumping) {
+      _isJumping = true;
+      remove(_runHitbox);
+      add(_jumpHitbox);
       if (sfx) playSFX(jumpSfxPath);
       if (_isAttacking) {
         animationTicker?.setToLast();
       }
-      remove(_runHitbox);
-      add(_jumpHitbox);
-      _isJumping = true;
       _movement = -_jumpStrength;
       animation = _jumpAnimation;
     }
@@ -124,9 +144,9 @@ class Player extends SpriteAnimationComponent
 
   void attack() {
     if (!_isAttacking) {
-      if (sfx) playSFX(attackSfxPath);
-      add(_attackHitbox);
       _isAttacking = true;
+      add(_attackHitbox);
+      if (sfx) playSFX(attackSfxPath);
       if (_isJumping && !_jumpAttack) {
         remove(_jumpHitbox);
         _jumpAttack = true;

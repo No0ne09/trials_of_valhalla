@@ -17,7 +17,10 @@ class Obstacle extends SpriteAnimationComponent
   FutureOr<void> onLoad() async {
     final spriteSheet = SpriteSheet(
       image: await gameRef.images.load(obstacleWolfPath),
-      srcSize: Vector2(48, 32),
+      srcSize: Vector2(
+        48,
+        32,
+      ),
     );
     SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
       row: 0,
@@ -26,13 +29,25 @@ class Obstacle extends SpriteAnimationComponent
       to: 6,
     );
     animation = spriteAnimation;
-    size = Vector2(gameRef.size[0] * 0.18, gameRef.size[1] * 0.18);
-    position = Vector2(gameRef.size[0], gameRef.size[1] * 0.75);
+    size = Vector2(
+      gameRef.size[0] * 0.18,
+      gameRef.size[1] * 0.18,
+    );
+    position = Vector2(
+      gameRef.size[0],
+      gameRef.size[1] * 0.75,
+    );
     add(
       RectangleHitbox(
         anchor: Anchor.center,
-        size: Vector2(size[0] * 0.65, size[1] * 0.65),
-        position: Vector2(size[0] * 0.65, size[1] * 0.65),
+        size: Vector2(
+          size[0] * 0.65,
+          size[1] * 0.65,
+        ),
+        position: Vector2(
+          size[0] * 0.65,
+          size[1] * 0.65,
+        ),
       ),
     );
     return super.onLoad();
