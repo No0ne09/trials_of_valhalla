@@ -87,7 +87,7 @@ Future<void> savePrefs(String key, dynamic value) async {
   } else if (value is List<String>) {
     await prefs.setStringList(key, value);
   } else {
-    throw Exception();
+    return;
   }
 }
 
@@ -105,6 +105,6 @@ Future<dynamic> loadPrefs(String key, Type type) async {
   } else if (type == List<String>) {
     return prefs.getStringList(key);
   } else {
-    throw Exception();
+    return null;
   }
 }

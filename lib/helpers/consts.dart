@@ -14,10 +14,10 @@ const obstacleWolfPath = "game_images/obstacle_wolf.png";
 const enemyBatPath = 'game_images/enemy_bat.png';
 const enemyNecroPath = 'game_images/enemy_necro.png';
 const enemyDraugrPath = 'game_images/enemy_draugr.png';
-const baseThreshold = 1.5;
 
 const uuid = Uuid();
 
+const baseThreshold = 1.5;
 const List<Map<String, double>> thresholdsOptions = [
   {
     minimum: 1.05,
@@ -32,7 +32,7 @@ const List<Map<String, double>> thresholdsOptions = [
     low: 1.4,
   },
   {
-    medium: 1.5,
+    medium: baseThreshold,
   },
   {
     high: 2.0,
