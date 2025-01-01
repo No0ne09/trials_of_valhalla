@@ -173,12 +173,12 @@ class Player extends SpriteAnimationComponent
           gameRef.score += 1;
           if (sfx) playSFX(enemyDeathSfxPath);
         } else {
-          //_updateOverlays();
-          // gameRef.pauseEngine();
+          _updateOverlays();
+          //gameRef.pauseEngine();
         }
       }
     } else {
-      //_updateOverlays();
+      _updateOverlays();
       //gameRef.pauseEngine();
     }
     super.onCollision(intersectionPoints, other);
