@@ -46,7 +46,7 @@ class GameScreen extends ConsumerWidget {
           "GameOver": (context, GameCore game) {
             if (game.score > 0) _uploadScore(game.score, context);
             game.closeGame();
-            playSFX(deathSfxPath);
+            if (sfx) playSFX(playerDeathSfxPath);
             return ComplexScreenBase(
               title: gameOver,
               divider: 1,
