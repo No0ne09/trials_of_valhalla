@@ -30,10 +30,9 @@ class GameOveralyPopup extends StatelessWidget {
                     child: Text(
                       "$scored\n$score $points",
                       textAlign: TextAlign.center,
-                      style:
-                          Theme.of(context).textTheme.displayMedium!.copyWith(
-                                fontFamily: defaultFontFamily,
-                              ),
+                      style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                            fontFamily: defaultFontFamily,
+                          ),
                     ),
                   )
                 : MainButton(

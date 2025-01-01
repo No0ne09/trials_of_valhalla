@@ -11,7 +11,7 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ComplexScreenBase(
-      divider: 1.8,
+      divider: 1.5,
       title: settings,
       child: SingleChildScrollView(
         child: Column(
