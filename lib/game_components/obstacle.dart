@@ -41,11 +41,11 @@ class Obstacle extends SpriteAnimationComponent
       RectangleHitbox(
         anchor: Anchor.center,
         size: Vector2(
-          size[0] * 0.6,
+          size[0] * 0.63,
           size[1] * 0.65,
         ),
         position: Vector2(
-          size[0] * 0.55,
+          size[0] * 0.5,
           size[1] * 0.65,
         ),
       ),
