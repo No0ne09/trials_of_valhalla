@@ -37,31 +37,34 @@ class GameScreen extends ConsumerWidget {
     final shake = ref.watch(shakeProvider);
     final music = ref.watch(bgMusicProvider);
     final sfx = ref.watch(sfxProvider);
+    final threshold = ref.watch(thresholdProvider);
     return PopScope(
-        canPop: false,
-        child: GameWidget(
-            overlayBuilderMap: {
-              "PauseButton": (context, GameCore game) =>
-                  PauseButton(game: game),
-              "GameOver": (context, GameCore game) {
-                if (game.score > 0) _uploadScore(game.score, context);
-                game.closeGame();
-                playSFX(deathSfxPath);
-                return ComplexScreenBase(
-                  title: "gameover",
-                  divider: 1,
-                  child: GameOveralyPopup(
-                    game: game,
-                    isGameOver: true,
-                    score: game.score,
-                  ),
-                );
-              },
-            },
-            game: GameCore(
-              sfx: sfx,
-              music: music,
-              shake: shake,
-            )));
+      canPop: false,
+      child: GameWidget(
+        overlayBuilderMap: {
+          "PauseButton": (context, GameCore game) => PauseButton(game: game),
+          "GameOver": (context, GameCore game) {
+            if (game.score > 0) _uploadScore(game.score, context);
+            game.closeGame();
+            playSFX(deathSfxPath);
+            return ComplexScreenBase(
+              title: "gameover",
+              divider: 1,
+              child: GameOveralyPopup(
+                game: game,
+                isGameOver: true,
+                score: game.score,
+              ),
+            );
+          },
+        },
+        game: GameCore(
+          sfx: sfx,
+          music: music,
+          shake: shake,
+          threshold: threshold,
+        ),
+      ),
+    );
   }
 }

@@ -20,10 +20,12 @@ class GameCore extends FlameGame with HasCollisionDetection {
   final bool sfx;
   final bool music;
   final bool shake;
+  final double threshold;
   GameCore({
     required this.sfx,
     required this.music,
     required this.shake,
+    required this.threshold,
   });
 
   late double _enemyTimerPeriod;
@@ -47,7 +49,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
           onShake: () {
             player.attack();
           },
-          shakeThresholdGravity: 1.1);
+          shakeThresholdGravity: threshold);
     }
 
     _scoreComponent = TextComponent(
