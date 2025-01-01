@@ -8,16 +8,17 @@ import 'package:trials_of_valhalla/helpers/theme.dart';
 class CustomSwitch extends ConsumerWidget {
   const CustomSwitch(
       {required this.text,
-      required this.value,
-      required this.onChanged,
+      required this.dataKey,
+      required this.provider,
       super.key});
 
   final String text;
-  final bool value;
-  final void Function(bool newValue) onChanged;
+  final String dataKey;
+  final StateProvider provider;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final value = ref.watch(provider);
     return Card(
       child: SwitchListTile(
         title: Text(
@@ -30,11 +31,11 @@ class CustomSwitch extends ConsumerWidget {
         activeColor: accentColor,
         inactiveTrackColor: Colors.white,
         inactiveThumbColor: Colors.black,
-        onChanged: (value) {
+        onChanged: (value) async {
           final audio = ref.read(sfxProvider);
           if (audio) playSFX(buttonSFXPath);
-
-          onChanged(value);
+          await savePrefs(dataKey, value);
+          ref.read(provider.notifier).state = value;
         },
       ),
     );
