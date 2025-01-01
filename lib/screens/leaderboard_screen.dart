@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
-import 'package:trials_of_valhalla/widgets/layout/complex_screen_base.dart';
+import 'package:trials_of_valhalla/screens/complex_screen_base.dart';
 import 'package:trials_of_valhalla/widgets/layout/custom_progress_indicator.dart';
 import 'package:trials_of_valhalla/widgets/leaderboard/leaderboard_tile.dart';
 

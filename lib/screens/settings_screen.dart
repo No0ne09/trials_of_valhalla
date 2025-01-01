@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trials_of_valhalla/helpers/providers.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
-import 'package:trials_of_valhalla/widgets/layout/complex_screen_base.dart';
+import 'package:trials_of_valhalla/screens/complex_screen_base.dart';
 import 'package:trials_of_valhalla/widgets/settings/custom_switch.dart';
 import 'package:trials_of_valhalla/widgets/settings/threshold/shake_settings.dart';
 

@@ -9,7 +9,7 @@ import 'package:trials_of_valhalla/helpers/functions.dart';
 import 'package:trials_of_valhalla/helpers/providers.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
 import 'package:trials_of_valhalla/widgets/buttons/pause_button.dart';
-import 'package:trials_of_valhalla/widgets/layout/complex_screen_base.dart';
+import 'package:trials_of_valhalla/screens/complex_screen_base.dart';
 import 'package:trials_of_valhalla/widgets/popups/game_overaly_popup.dart';
 
 class GameScreen extends ConsumerWidget {
