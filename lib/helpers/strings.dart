@@ -44,3 +44,5 @@ const extremelyHigh = "Extremely high";
 const maxium = "Maximum";
 
 const shakeThreshold = "Shake threshold";
+const points = "points";
+const scored = "You've scored";

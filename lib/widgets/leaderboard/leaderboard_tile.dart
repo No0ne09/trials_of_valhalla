@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trials_of_valhalla/helpers/strings.dart';
 import 'package:trials_of_valhalla/helpers/theme.dart';
 
 class LeaderboardTile extends StatelessWidget {
@@ -18,7 +19,7 @@ class LeaderboardTile extends StatelessWidget {
             ),
       ),
       trailing: Text(
-        "${data["score"].toString()} points",
+        "${data["score"].toString()} $points",
         style: Theme.of(context).textTheme.headlineMedium!.copyWith(
               fontFamily: defaultFontFamily,
             ),
