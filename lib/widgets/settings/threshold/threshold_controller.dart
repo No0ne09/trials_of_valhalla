@@ -23,10 +23,10 @@ class ThresholdController extends ConsumerWidget {
         trailing: DropdownButton(
           value: threshold,
           items: [
-            ...thresholdsOptions.map((item) {
-              final key = item.keys.first;
+            ...thresholdsOptions.entries.map((item) {
+              final key = item.key;
               return DropdownMenuItem(
-                value: item[key],
+                value: item.value,
                 child: Text(
                   key,
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(

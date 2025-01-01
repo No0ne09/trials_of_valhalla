@@ -16,34 +16,15 @@ const enemyNecroPath = 'game_images/enemy_necro.png';
 const enemyDraugrPath = 'game_images/enemy_draugr.png';
 
 const uuid = Uuid();
-
 const baseThreshold = 1.2;
-const List<Map<String, double>> thresholdsOptions = [
-  {
-    minimum: 1.01,
-  },
-  {
-    extremelyLow: 1.02,
-  },
-  {
-    veryLow: 1.05,
-  },
-  {
-    low: 1.1,
-  },
-  {
-    medium: baseThreshold,
-  },
-  {
-    high: 1.5,
-  },
-  {
-    veryHigh: 1.8,
-  },
-  {
-    extremelyHigh: 2.2,
-  },
-  {
-    maximum: 2.5,
-  },
-];
+const Map<String, double> thresholdsOptions = {
+  minimum: 1.01,
+  extremelyLow: 1.02,
+  veryLow: 1.05,
+  low: 1.1,
+  medium: baseThreshold,
+  high: 1.5,
+  veryHigh: 1.8,
+  extremelyHigh: 2.2,
+  maximum: 2.5,
+};
