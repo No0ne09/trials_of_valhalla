@@ -38,6 +38,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
   final _random = Random();
   @override
   FutureOr<void> onLoad() async {
+    //debugMode = true;
     Flame.device.fullScreen();
     FlameAudio.bgm.initialize();
     if (music) {
