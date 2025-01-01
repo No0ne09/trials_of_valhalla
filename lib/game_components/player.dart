@@ -97,13 +97,13 @@ class Player extends SpriteAnimationComponent
       //this check is needed for rare cases when attack and jump are ending at the same time and bad things are happening with hitbox managing
       if (!_isAttacking) {
         if (y >= _baseY) {
-          _isJumping = false;
-          _jumpAttack = false;
           y = _baseY;
           add(_jumpHitbox);
           remove(_jumpHitbox);
           add(_runHitbox);
           animation = _runAnimation;
+          _isJumping = false;
+          _jumpAttack = false;
         }
       }
     }
@@ -136,10 +136,10 @@ class Player extends SpriteAnimationComponent
       animation = _attackAnimation;
 
       animationTicker?.onComplete = () {
-        _isAttacking = false;
         remove(_attackHitbox);
         add(_runHitbox);
         animation = _runAnimation;
+        _isAttacking = false;
       };
     }
   }
@@ -153,10 +153,12 @@ class Player extends SpriteAnimationComponent
         gameRef.score += 1;
         if (sfx) playSFX(enemyDeathSfxPath);
       } else {
-        _updateOverlays();
+        //_updateOverlays();
+        gameRef.pauseEngine();
       }
     } else {
-      _updateOverlays();
+      //_updateOverlays();
+      gameRef.pauseEngine();
     }
     super.onCollision(intersectionPoints, other);
   }
