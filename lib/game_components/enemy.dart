@@ -7,8 +7,7 @@ import 'package:trials_of_valhalla/helpers/consts.dart';
 
 enum EnemyType { bat, necro, draugr }
 
-class Enemy extends SpriteAnimationComponent
-    with CollisionCallbacks, HasGameRef {
+class Enemy extends SpriteAnimationComponent with HasGameRef {
   final EnemyType type;
   final double speed;
   final double positionModifier;

@@ -9,8 +9,7 @@ import 'package:flame/sprite.dart';
 import 'package:trials_of_valhalla/game_components/game_core.dart';
 import 'package:trials_of_valhalla/helpers/consts.dart';
 
-class Obstacle extends SpriteAnimationComponent
-    with HasGameRef<GameCore>, CollisionCallbacks {
+class Obstacle extends SpriteAnimationComponent with HasGameRef<GameCore> {
   final double speed;
   Obstacle({required this.speed});
   @override
