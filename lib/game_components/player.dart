@@ -114,16 +114,14 @@ class Player extends SpriteAnimationComponent
       y += _movement * dt;
 
       //this check is needed for rare cases when attack and jump are ending at the same time and bad things are happening with hitbox managing
-      if (!_isAttacking) {
-        if (y >= _baseY) {
-          y = _baseY;
-          add(_jumpHitbox);
-          remove(_jumpHitbox);
-          add(_runHitbox);
-          animation = _runAnimation;
-          _isJumping = false;
-          _jumpAttack = false;
-        }
+      if (!_isAttacking && y >= _baseY) {
+        y = _baseY;
+        add(_jumpHitbox);
+        remove(_jumpHitbox);
+        add(_runHitbox);
+        animation = _runAnimation;
+        _isJumping = false;
+        _jumpAttack = false;
       }
     }
   }
@@ -131,12 +129,12 @@ class Player extends SpriteAnimationComponent
   void jump() {
     if (!_isJumping) {
       _isJumping = true;
-      remove(_runHitbox);
-      add(_jumpHitbox);
       if (sfx) playSFX(jumpSfxPath);
       if (_isAttacking) {
         animationTicker?.setToLast();
       }
+      remove(_runHitbox);
+      add(_jumpHitbox);
       _movement = -_jumpStrength;
       animation = _jumpAnimation;
     }
