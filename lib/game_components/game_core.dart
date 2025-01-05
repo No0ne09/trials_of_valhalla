@@ -27,8 +27,6 @@ class GameCore extends FlameGame with HasCollisionDetection {
     required this.threshold,
   });
 
-  late double _enemySpawnRate;
-  late double _obstacleSpawnRate;
   double _enemyTimer = 0;
   double _obstacleTimer = 0;
   int score = 0;
@@ -129,22 +127,22 @@ class GameCore extends FlameGame with HasCollisionDetection {
   @override
   void update(double dt) {
     _scoreComponent.text = score.toString();
-    _enemySpawnRate = max(1.0, 5.0 - score * 0.04);
+    final enemySpawnRate = max(0.9, 4.9 - score * 0.04);
     _enemyTimer += dt;
-    _obstacleSpawnRate = max(5, 12.0 - score * 0.07);
+    final obstacleSpawnRate = max(5, 12.0 - score * 0.07);
     _obstacleTimer += dt;
-    if (_obstacleTimer >= _obstacleSpawnRate) {
+    if (_obstacleTimer >= obstacleSpawnRate) {
       final obstacle = Obstacle(
         speed: (3 + min(4.4, score * 0.1)) * size[0] / 13,
       );
       _obstacleTimer = 0;
       add(obstacle);
     }
-    if (_enemyTimer >= _enemySpawnRate) {
+    if (_enemyTimer >= enemySpawnRate) {
       final enemy = Enemy(
         type: EnemyType.values[_random.nextInt(EnemyType.values.length)],
         speed: (2 + min(3.5, score * 0.07)) * size[0] / 15,
-        positionModifier: _random.nextDouble() * size[0] / 10,
+        positionModifier: _random.nextDouble() * size[0] / 13,
       );
       _enemyTimer = 0;
       add(enemy);
