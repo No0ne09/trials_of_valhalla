@@ -20,7 +20,7 @@ class Enemy extends SpriteAnimationComponent with HasGameRef {
   bool isDead = false;
   @override
   async.FutureOr<void> onLoad() async {
-    final startX = gameRef.size[0] + size[0] + positionModifier;
+    final startX = gameRef.size[0] + positionModifier;
     final SpriteSheet spriteSheet;
     switch (type) {
       case EnemyType.bat:
