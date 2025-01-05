@@ -114,7 +114,7 @@ class GameCore extends FlameGame with HasCollisionDetection {
       GameButtonComponent(
         onTap: player.attack,
         buttonPosition: Vector2(
-          size[0] * 0.87,
+          size[0] * 0.85,
           size[1] * 0.05,
         ),
         path: attackButtonPath,
