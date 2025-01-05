@@ -106,7 +106,7 @@ class Enemy extends SpriteAnimationComponent with HasGameRef {
         );
         SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
           row: 1,
-          stepTime: 0.1,
+          stepTime: 0.18,
           from: 17,
           to: 23,
         );
