@@ -17,120 +17,118 @@ class Enemy extends SpriteAnimationComponent with HasGameRef {
     required this.speed,
     required this.positionModifier,
   });
+
   bool isDead = false;
+
+  Future<void> _loadEnemy({
+    required String path,
+    required Vector2 srcSize,
+    required int animationRow,
+    required double animationStepTime,
+    required int animationFrom,
+    required int animationTo,
+    required Vector2 sizeVector,
+    required double positionYMultiplier,
+    required Vector2 hitboxSizeMultiplier,
+    required Vector2 hitboxPositionMultiplier,
+  }) async {
+    final startX = gameRef.size[0] + positionModifier;
+    final spriteSheet = SpriteSheet(
+      image: await gameRef.images.load(path),
+      srcSize: srcSize,
+    );
+    animation = spriteSheet.createAnimation(
+      row: animationRow,
+      stepTime: animationStepTime,
+      from: animationFrom,
+      to: animationTo,
+    );
+    size = sizeVector;
+    position = Vector2(
+      startX,
+      gameRef.size[1] * positionYMultiplier,
+    );
+    add(
+      RectangleHitbox(
+        anchor: Anchor.center,
+        size: Vector2(
+          size[0] * hitboxSizeMultiplier.x,
+          size[1] * hitboxSizeMultiplier.y,
+        ),
+        position: Vector2(
+          size[0] * hitboxPositionMultiplier.x,
+          size[1] * hitboxPositionMultiplier.y,
+        ),
+      ),
+    );
+  }
+
   @override
   async.FutureOr<void> onLoad() async {
-    final startX = gameRef.size[0] + positionModifier;
-    final SpriteSheet spriteSheet;
     switch (type) {
       case EnemyType.bat:
-        spriteSheet = SpriteSheet(
-          image: await gameRef.images.load(enemyBatPath),
+        await _loadEnemy(
+          path: enemyBatPath,
           srcSize: Vector2(
             64,
             64,
           ),
-        );
-        SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
-          row: 0,
-          stepTime: 0.05,
-          from: 0,
-          to: 9,
-        );
-        animation = spriteAnimation;
-        size = Vector2(
-          gameRef.size[1] * 0.25,
-          gameRef.size[1] * 0.25,
-        );
-        position = Vector2(
-          startX,
-          gameRef.size[1] * 0.33,
-        );
-        add(
-          RectangleHitbox(
-            anchor: Anchor.center,
-            size: Vector2(
-              size[0] * 0.35,
-              size[1] * 0.35,
-            ),
-            position: Vector2(
-              size[0] * 0.5,
-              size[1] * 0.55,
-            ),
+          animationRow: 0,
+          animationStepTime: 0.05,
+          animationFrom: 0,
+          animationTo: 9,
+          sizeVector: Vector2(
+            gameRef.size[1] * 0.25,
+            gameRef.size[1] * 0.25,
           ),
+          positionYMultiplier: 0.33,
+          hitboxPositionMultiplier: Vector2(0.5, 0.55),
+          hitboxSizeMultiplier: Vector2(0.35, 0.35),
         );
 
       case EnemyType.necro:
-        spriteSheet = SpriteSheet(
-          image: await gameRef.images.load(enemyNecroPath),
+        await _loadEnemy(
+          path: enemyNecroPath,
           srcSize: Vector2(
             160,
             128,
           ),
-        );
-        SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
-          row: 4,
-          stepTime: 0.15,
-          from: 0,
-          to: 17,
-        );
-        animation = spriteAnimation;
-        size = Vector2(
-          gameRef.size[0] / 1.5,
-          gameRef.size[1] / 1.25,
-        );
-        position = Vector2(
-          startX,
-          gameRef.size[1] / 5,
-        );
-        add(
-          RectangleHitbox(
-            anchor: Anchor.center,
-            size: Vector2(
-              size[0] * 0.18,
-              size[1] * 0.35,
-            ),
-            position: Vector2(
-              size[0] * 0.49,
-              size[1] * 0.7,
-            ),
+          animationRow: 4,
+          animationStepTime: 0.15,
+          animationFrom: 0,
+          animationTo: 17,
+          sizeVector: Vector2(
+            gameRef.size[0] / 1.5,
+            gameRef.size[1] / 1.25,
           ),
+          positionYMultiplier: 0.2,
+          hitboxPositionMultiplier: Vector2(0.49, 0.7),
+          hitboxSizeMultiplier: Vector2(0.18, 0.35),
         );
+
       case EnemyType.draugr:
-        spriteSheet = SpriteSheet(
-          image: await gameRef.images.load(enemyDraugrPath),
+        await _loadEnemy(
+          path: enemyDraugrPath,
           srcSize: Vector2(
             80,
             80,
           ),
-        );
-        SpriteAnimation spriteAnimation = spriteSheet.createAnimation(
-          row: 1,
-          stepTime: 0.18,
-          from: 17,
-          to: 23,
-        );
-        animation = spriteAnimation;
-        size = Vector2(
-          gameRef.size[0] / 3,
-          gameRef.size[1] / 2,
-        );
-        position = Vector2(
-          startX,
-          gameRef.size[1] * 0.5,
-        );
-
-        add(
-          RectangleHitbox(
-            anchor: Anchor.center,
-            size: Vector2(
-              size[0] * 0.45,
-              size[1] * 0.25,
-            ),
-            position: Vector2(
-              size[0] * 0.55,
-              size[1] * 0.65,
-            ),
+          animationRow: 1,
+          animationStepTime: 0.18,
+          animationFrom: 17,
+          animationTo: 23,
+          sizeVector: size = Vector2(
+            gameRef.size[0] / 3,
+            gameRef.size[1] / 2,
+          ),
+          positionYMultiplier: 0.5,
+          hitboxSizeMultiplier: Vector2(
+            0.45,
+            0.25,
+          ),
+          hitboxPositionMultiplier: Vector2(
+            0.55,
+            0.65,
           ),
         );
     }
