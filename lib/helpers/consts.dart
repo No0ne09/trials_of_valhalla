@@ -1,4 +1,3 @@
-import 'package:uuid/uuid.dart';
 import 'package:trials_of_valhalla/helpers/strings.dart';
 
 const characterPath = 'game_images/character.png';
@@ -15,7 +14,6 @@ const enemyBatPath = 'game_images/enemy_bat.png';
 const enemyNecroPath = 'game_images/enemy_necro.png';
 const enemyDraugrPath = 'game_images/enemy_draugr.png';
 
-const uuid = Uuid();
 const baseThreshold = 1.2;
 const Map<String, double> thresholdsOptions = {
   minimum: 1.01,

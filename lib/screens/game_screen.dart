@@ -23,7 +23,7 @@ class GameScreen extends ConsumerStatefulWidget {
 class _GameScreenState extends ConsumerState<GameScreen> {
   void _uploadScore(int score, BuildContext context) {
     try {
-      FirebaseFirestore.instance.collection("high_scores").doc(uuid.v4()).set({
+      FirebaseFirestore.instance.collection("high_scores").doc().set({
         "user": FirebaseAuth.instance.currentUser!.email,
         "score": score,
       });
