@@ -142,7 +142,6 @@ class GameCore extends FlameGame with HasCollisionDetection {
       final enemy = Enemy(
         type: EnemyType.values[_random.nextInt(EnemyType.values.length)],
         speed: (3 + min(3.5, score * 0.07)) * size[0] / 15,
-        positionModifier: _random.nextDouble() * size[0] / 13,
       );
       _enemyTimer = 0;
       add(enemy);

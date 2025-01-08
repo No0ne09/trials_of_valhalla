@@ -10,12 +10,10 @@ enum EnemyType { bat, necro, draugr }
 class Enemy extends SpriteAnimationComponent with HasGameRef {
   final EnemyType type;
   final double speed;
-  final double positionModifier;
 
   Enemy({
     required this.type,
     required this.speed,
-    required this.positionModifier,
   });
 
   bool isDead = false;
@@ -32,7 +30,7 @@ class Enemy extends SpriteAnimationComponent with HasGameRef {
     required Vector2 hitboxSizeMultiplier,
     required Vector2 hitboxPositionMultiplier,
   }) async {
-    final startX = gameRef.size[0] + positionModifier;
+    final startX = gameRef.size[0];
     final spriteSheet = SpriteSheet(
       image: await gameRef.images.load(path),
       srcSize: srcSize,
