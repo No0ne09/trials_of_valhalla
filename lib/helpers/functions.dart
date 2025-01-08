@@ -60,17 +60,20 @@ Future<void> savePrefs(String key, dynamic value) async {
 
   if (value is bool) {
     await prefs.setBool(key, value);
-  } else if (value is int) {
-    await prefs.setInt(key, value);
-  } else if (value is double) {
-    await prefs.setDouble(key, value);
-  } else if (value is String) {
-    await prefs.setString(key, value);
-  } else if (value is List<String>) {
-    await prefs.setStringList(key, value);
-  } else {
-    return;
   }
+  if (value is int) {
+    await prefs.setInt(key, value);
+  }
+  if (value is double) {
+    await prefs.setDouble(key, value);
+  }
+  if (value is String) {
+    await prefs.setString(key, value);
+  }
+  if (value is List<String>) {
+    await prefs.setStringList(key, value);
+  }
+  return;
 }
 
 Future<dynamic> loadPrefs(String key, Type type) async {
@@ -78,15 +81,18 @@ Future<dynamic> loadPrefs(String key, Type type) async {
 
   if (type == bool) {
     return prefs.getBool(key);
-  } else if (type == int) {
-    return prefs.getInt(key);
-  } else if (type == double) {
-    return prefs.getDouble(key);
-  } else if (type == String) {
-    return prefs.getString(key);
-  } else if (type == List<String>) {
-    return prefs.getStringList(key);
-  } else {
-    return null;
   }
+  if (type == int) {
+    return prefs.getInt(key);
+  }
+  if (type == double) {
+    return prefs.getDouble(key);
+  }
+  if (type == String) {
+    return prefs.getString(key);
+  }
+  if (type == List<String>) {
+    return prefs.getStringList(key);
+  }
+  return null;
 }
